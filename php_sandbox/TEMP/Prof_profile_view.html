@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Professors view Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+	
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-static-top" >
+		
+			<div class="container">
+			
+				<a href="#" class="navbar-brand">Online Academia</a> 						<!-- to write stuff on nav bar -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					
+				</button>
+				
+				<div class ="collapse navbar-collapse navHeaderCollapse">
+					<ul class="nav navbar-nav navbar-right">					<!-- first two for styling and the next one for positioning -->
+						<form class="navbar-form navbar-left" role="search">
+						
+							<div class="search_bar">
+								<input type="text" class="form-control" placeholder="Search">
+								<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+							</div>
+						</form>
+						
+						<li><a href="#" class="navbar-brand">Home</a></li>
+						<li><a href="#" class="navbar-brand">Profile</a></li>
+						<li><a href="#" class="navbar-brand">Settings</a></li>
+						<li><a href="#" class="navbar-brand">Logout</a></li>
+						
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+<div class="container">
+  <div class="row" id="static_profile_box">
+	    <div class="col-md-10 col-md-offset-1" >
+	      <div class="well-lg panel panel-default" id="profile_box">
+	        <div class="panel-body" >
+	          <div class="row">
+	            <div class="col-sm-3 text-center col-sm-offset-1"><!---change the size of the picture--->
+	              <img src="images/default_profile_image.png" alt="" class="center-block img-circle img-thumbnail img-responsive">
+				  <br>
+				   <button class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i> Follow </button>
+	            </div>
+	            <!--/col--> 
+	            <div class="col-xs-12 col-sm-7 col-sm-offset-1" id="panel_content">
+				<center>
+	              <h2  style="font-family:Monospace; font-size:36px;">Asim Banerjee</h2>
+				  <br>
+				  
+				  <p><strong>Webmail ID: </strong>asim_banerjee@daiict.ac.in</p>
+				   <p><strong>Position: </strong>Chaparasi</p>
+				  <p><strong>Area of Interests: </strong> Pattern Recognition, Speech Coding, Software Engineering, Software Quality Assurance and Project Management. </p>
+				  <p><strong>Research Fields: </strong> Pattern Recognition, Medical Imaging, Image Processing, Digital Signal Processing. </p>
+
+	              
+				   <p><i class="glyphicon glyphicon-earphone"></i><strong> : </strong>(+91) 079-3051-0554</p>
+				  <p><i class="glyphicon glyphicon-envelope"></i><strong> : </strong>abc@xyz.com</p>
+				</center>
+	            </div>
+	           
+	            
+	          </div>
+	          <!--/row-->
+	        </div>
+	        <!--/panel-body-->
+	      </div>
+	      <!--/panel-->
+	    </div>
+	    <!--/col--> 
+	</div>
+  <!--/row--> 
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+		<div class="well-lg panel panel-default" id="toggable_box">
+			<div class="panel-body" >
+			<!--	<p> here comes the navigation bar</p> -->
+				<div role="tabpanel">
+
+             <!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                        <li role="presentation"><a href="#publications" aria-controls="publications" role="tab" data-toggle="tab">Publications</a></li>
+					    <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a></li>
+					    <li role="presentation"><a href="#guided_projects" aria-controls="guided_projects" role="tab" data-toggle="tab">Guided Projects</a></li>
+					   
+					</ul>
+
+					  <!-- Tab panes -->
+					<div class="tab-content">
+						<!--About tab-->
+					    <div role="tabpanel" class="tab-pane active" id="about">
+
+
+						    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
+							<p class="col-lg-9 control-label">Dr. Asim Banerjee is currently working as an Professor at the Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar. He obtained B.E. in Electronics and M.Tech in Electronics and Instrumentation. Dr.</p> 
+
+							<p class="col-lg-3 control-label"><strong>Year of Joining :</strong></p>
+							<p class="col-lg-9 control-label">2004</p>
+
+							<p class="col-lg-3 control-label"><strong>Courses Taken :</strong></p>
+							<p class="col-lg-9 control-label">Software Engineering (IT-314)</p>
+
+							<p class="col-lg-3 control-label"><strong>Achievements :</strong></p>
+							<p class="col-lg-9 control-label">Dr. Banerjee obtained PhD in the area of image processing from IIT, Bombay. Before joing DA-IICT, Dr. Banerjee was with several industries for 14 years working mainly as researcher.</p>
+
+							
+							<p class="col-lg-3 control-label"><strong>Under Graduate :</strong></p> 
+							<p class="col-lg-9 control-label">University of Pune  <label>(1988)</label></p> 
+
+							<p class="col-lg-3 control-label"><strong>Post Graduate :</strong></p> 
+							<p class="col-lg-9 control-label">Indian Institute of Technology, Bombay  <label>(1991)</label></p> 
+								
+							<p class="col-lg-3 control-label"><strong>PhD :</strong></p> 
+							<p class="col-lg-9 control-label">Indian Institute of Technology, Bombay  <label>(1996)</label></p> 
+
+						
+
+						</div>
+
+
+						<!--publications tab-->
+					    <div role="tabpanel" class="tab-pane fade" id="publications">
+
+
+					    		<h2>Books</h2>
+				       			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!--copy --> 
+				      				<div class="panel panel-default">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Book 1</a>
+				                			</h4>
+				            			</div>
+				            			<div id="collapseOne" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			<!-- Anuj Copy -->
+				                    				<label class="col-lg-4">Authors:</label>
+				                          			<p class="col-lg-8">This is where the database part goes.</p>
+													<label class="col-lg-4">Year of Publications:</label>
+				          							<p class="col-lg-8">25,august,1993</p>
+				          							<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
+				          							<label class="col-lg-4">Link:</label>
+				          							<p class="col-lg-8"><a href="#">www.google.com</a></p>
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       				
+				       				
+				       				
+				       			</form>	
+					    	
+					    	
+
+				       			<!-- research paper started -->
+				       			
+				       			<h2>Research Paper</h2>
+				       			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!--copy --> 
+				      				<div class="panel panel-default">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour">Research paper one</a>
+				                			</h4>
+				            			</div>
+				            			<div id="collapsefour" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			<!-- Anuj Copy -->
+				                    				<label class="col-lg-4">Authors:</label>
+				                          			<p class="col-lg-8">This is where the database part goes.</p>
+													<label class="col-lg-4">Year of Publications:</label>
+				          							<p class="col-lg-8">25,august,1993</p>
+				          							<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
+				          							<label class="col-lg-4">Journal:</label>
+				          							<p class="col-lg-8">Published in Harvard Sept issue</p>
+				          							<label class="col-lg-4">Conference:</label>
+				          							<p class="col-lg-8">Discussed at academic union</p>
+				          							<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8">Pending</p>
+				          							<label class="col-lg-4">Link:</label>
+				          							<p class="col-lg-8"><a href="#">www.google.com</a></p>
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       				
+				       			</form>	
+				      			
+					
+				      	</div>
+
+
+
+				    	<!-- Project Tab-->
+					    <div role="tabpanel" class="tab-pane fade" id="projects">
+
+							
+								<div class="col-md-10 col-sm-6 col-xs-12 personal-info">
+				      			<h2></h2>
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel panel-default">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP1">Project Tile 1</a>
+				                			</h4>
+				            			</div>
+				            			<div id="collapseP1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			
+				                    				<label class="col-lg-4">Description:</label>
+				                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+													<label class="col-lg-4">From:</label>
+				          							<p class="col-lg-8">Jan 2000</p>
+													<label class="col-lg-4">To:</label>
+				          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+													<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8">Completed or on-going</p>
+													<label class="col-lg-4">Guide:</label>
+				          							<p class="col-lg-8">Professor or Mentor</p>
+													<label class="col-lg-4">Associates:</label>
+				          							<p class="col-lg-8">Members of the project</p>
+													<label class="col-lg-4">Other Information:</label>
+				          							<p class="col-lg-8">If any present</p>
+
+				          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       				<!-- Project 2-->
+				       				<div class="panel panel-default">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP2">Project Title 2</a>
+				                			</h4>
+				            			</div>
+				            			<div id="collapseP2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			
+				                    				<label class="col-lg-4">Description:</label>
+				                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+													<label class="col-lg-4">From:</label>
+				          							<p class="col-lg-8">Jan 2000</p>
+													<label class="col-lg-4">To:</label>
+				          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+													<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8">Completed or on-going</p>
+													<label class="col-lg-4">Guide:</label>
+				          							<p class="col-lg-8">Professor or Mentor</p>
+													<label class="col-lg-4">Associates:</label>
+				          							<p class="col-lg-8">Members of the project</p>
+													<label class="col-lg-4">Other Information:</label>
+				          							<p class="col-lg-8">If any present</p>
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       				<!-- Project 3-->
+				       				<div class="panel panel-default">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP3">Project Tiltle 3</a>
+				                			</h4>
+				            			</div>
+				            			<div id="collapseP3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			
+				                    				<label class="col-lg-4">Description:</label>
+				                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+													<label class="col-lg-4">From:</label>
+				          							<p class="col-lg-8">Jan 2000</p>
+													<label class="col-lg-4">To:</label>
+				          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+													<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8">Completed or on-going</p>
+													<label class="col-lg-4">Guide:</label>
+				          							<p class="col-lg-8">Professor or Mentor</p>
+													<label class="col-lg-4">Associates:</label>
+				          							<p class="col-lg-8">Members of the project</p>
+													<label class="col-lg-4">Other Information:</label>
+				          							<p class="col-lg-8">If any present</p>
+				        					</div>
+				            			</div>
+				       				</div>
+				       			</form>
+
+
+				       			
+				       		</div>
+					    
+						</div>
+
+						<!-- Guided projects tab-->
+
+						<div role="tabpanel" class="tab-pane fade" id="guided_projects">
+
+							
+								<div class="col-md-10 col-sm-6 col-xs-12 personal-info">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+
+				      				<!--BTP Projects-->
+					      			<div class="panel panel-default">
+					            			<div class="panel-heading">
+					                			<h4 class="panel-title">
+					                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseBTP"><h3>BTP Projects</h3></a>
+					                			</h4>
+					            			</div>
+					            			<div id="collapseBTP" class="panel-collapse collapse out">
+					                			<div class="panel-body">
+								      				<!--BTP Project 1--> 
+								      				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseBTP1">BTP Project 1</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseBTP1" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       				<!--BTP Project 2--> 
+
+								       				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseBTP2">BTP Project 2</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseBTP2" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       			</div>
+								            </div>
+								    </div>
+
+
+								    <!--Summer Projects-->
+								    <div class="panel panel-default">
+					            			<div class="panel-heading">
+					                			<h4 class="panel-title">
+					                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSummer"><h3>Summer Projects</h3></a>
+					                			</h4>
+					            			</div>
+					            			<div id="collapseSummer" class="panel-collapse collapse out">
+					                			<div class="panel-body">
+								      				<!--BTP Project 1--> 
+								      				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSummer1">Summer Project 1</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseSummer1" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       				<!--BTP Project 2--> 
+
+								       				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSummer2">Summer Project 2</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseSummer2" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       			</div>
+								            </div>
+								    </div>
+
+
+								    <!--Research Projects-->
+					      			<div class="panel panel-default">
+					            			<div class="panel-heading">
+					                			<h4 class="panel-title">
+					                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseResearch"><h3>Research Projects</h3></a>
+					                			</h4>
+					            			</div>
+					            			<div id="collapseResearch" class="panel-collapse collapse out">
+					                			<div class="panel-body">
+								      				<!--BTP Project 1--> 
+								      				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseResearch1">Research Project 1</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseResearch1" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       				<!--BTP Project 2--> 
+
+								       				<div class="panel panel-default">
+								            			<div class="panel-heading">
+								                			<h4 class="panel-title">
+								                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseResearch2">Research Project 2</a>
+								                			</h4>
+								            			</div>
+								            			<div id="collapseResearch2" class="panel-collapse collapse out">
+								                			<div class="panel-body">
+								                			
+								                    				<label class="col-lg-4">Description:</label>
+								                          			<p class="col-lg-8">Brief description of the topic is given here.</p>
+																	<label class="col-lg-4">From:</label>
+								          							<p class="col-lg-8">Jan 2000</p>
+																	<label class="col-lg-4">To:</label>
+								          							<p class="col-lg-8">feb 2000 or not necessary to mention</p>
+																	<label class="col-lg-4">Status:</label>
+								          							<p class="col-lg-8">Completed or on-going</p>
+																	<label class="col-lg-4">Guide:</label>
+								          							<p class="col-lg-8">Professor or Mentor</p>
+																	<label class="col-lg-4">Associates:</label>
+								          							<p class="col-lg-8">Members of the project</p>
+																	<label class="col-lg-4">Other Information:</label>
+								          							<p class="col-lg-8">If any present</p>
+
+								          						
+								        					</div>
+								            			</div>
+								       				</div>
+
+								       			</div>
+								            </div>
+								    </div>
+
+				       				
+				       				
+				       			</form>
+
+
+				       			
+				       		</div>
+					    
+						</div>
+
+					   	
+
+
+
+			 
+
+                     	    
+					</div> <!--tabel content end-->	
+
+					    
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<!--/container-->
+</body>
+</html>

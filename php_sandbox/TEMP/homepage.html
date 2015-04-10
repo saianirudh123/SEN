@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css"> 
+  <link rel="stylesheet" href="css/sidebar_styles.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+	
+</head>
+
+<body class="side_bar">
+
+<div class="navbar navbar-inverse navbar-static-top" >
+		
+			<div class="container">
+			
+				<a href="#" class="navbar-brand">Online Academia</a> 
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					
+				</button>
+				
+				<div class ="collapse navbar-collapse navHeaderCollapse">
+					<ul class="nav navbar-nav navbar-right">					<!-- first two for styling and the next one for positioning -->
+						<form class="navbar-form navbar-left" role="search">
+						
+							<div class="search_bar">
+								<input type="text" class="form-control" placeholder="Search">
+								<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+							</div>
+						</form>
+						
+						<li><a href="homepage.html" class="navbar-brand">Home</a></li>
+						<li><a href="view_profile.html" class="navbar-brand">Profile</a></li>
+
+
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Name: <span class="caret"></span></a>
+						  <ul class="dropdown-menu" id="dropdown_for_navbar" role="menu">
+						    <li class="divider"></li>
+						    <li ><a href="#" data-toggle="modal" data-target="#cp">Change Password</a></li>
+						    <li><a href="#">Edit Profile</a></li>
+						    <li><a href="#">Something else here</a></li>
+						    <li class="divider"></li>
+						    <li><a href="#">Logout</a></li>
+						  </ul>
+						</li>
+			
+						
+												
+					</ul>
+				</div>
+				
+			</div>
+			
+</div>
+
+	<div class = "modal fade" id="cp" role="dialog">
+		<div class = "modal-dialog">
+			<div class = "modal-content">
+				<form class="form-horizontal">
+					<div class="modal-header">
+						<h1 align="center">Change Password</h1>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<div>
+							<input type="password" class="form-control" id="op" placeholder="Enter Old Password">
+							<br>
+							<input type="password" class="form-control" id="np" placeholder="Enter New Password">
+							<br>
+							<input type="password" class="form-control" id="npp" placeholder="Confirm New Password">
+							</div>
+						</div>
+					</div>
+						
+					<div class="modal-footer">
+						<a class = "btn btn-default" data-dismiss = "modal">Close</a>
+						<a class = "btn btn-primary" type="submit">Submit</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<nav class="navbar navbar-inverse sidebar" role="navigation">
+    <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Side Bar</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				<!--<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#">View Profile</a></li>
+						<li><a href="#">Edit Profile</a></li>					
+					</ul>
+				</li>-->
+		
+				
+				<li ><a href="#">Course Page<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></span></a></li>
+
+
+				<li><a href="#">Discussion Forum<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-comment"></span></a></li>
+				
+				<li ><a href="#">Groups<span style="font-size:16px;" class="pull-right hidden-xs showopacity  glyphicon glyphicon-tent"></span></a></li>
+
+				<li ><a href="#">Notifications<span style="font-size:16px;" class="pull-right hidden-xs showopacity  glyphicon glyphicon-bell"></span></a></li>
+				
+				
+
+					<!-- <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#">Change Password</a></li>
+						<li><a href="#">Another action</a></li>					
+					</ul>
+				</li> -->
+
+			</ul>
+		</div>
+	</div>
+
+</nav>
+
+<br>
+<br>
+<div class="main">
+<!-- Content Here -->
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-8">
+
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Artificial Intelligence Research Paper</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida pharetra ipsum vitae varius. Donec varius rhoncus pharetra. Vestibulum a pharetra mauris, vitae consectetur arcu. Fusce magna justo, tempor sed tincidunt et, lobortis in nulla. Integer mattis tempor ipsum. Duis vestibulum eget odio at interdum. Vivamus et aliquet lacus. Sed lobortis dignissim augue, ac malesuada sapien consectetur sed. Praesent cursus, orci a luctus elementum, metus turpis dictum ex, quis scelerisque tellus velit nec nunc. Pellentesque iaculis tincidunt porta.
+
+Aliquam erat volutpat. Aliquam non pellentesque tortor. Nulla turpis urna, ornare eget sagittis id, iaculis vel quam. Nam eget odio id mauris vulputate eleifend non mollis dolor. Aenean mollis mi vel mi dictum placerat. Aenean sagittis mauris et felis ultrices luctus. Vestibulum nec dui nec libero suscipit dapibus eu feugiat nisl. In a nulla tempor, rhoncus quam et, tristique urna. Donec et mattis neque. Pellentesque id volutpat nunc.
+ </div>
+
+    </div>
+
+    <div class="panel panel-success">
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Project SEN Added new Interns</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ante risus, tincidunt id viverra vitae, faucibus a ex. Praesent vel ante dolor. Praesent nec eros sit amet felis aliquam convallis nec quis lectus. Fusce vulputate dignissim augue, eget luctus mi dapibus ac. Nunc id auctor lectus, vel auctor metus. Cras nec leo in lacus faucibus iaculis ut at nulla. Donec at nulla tellus.
+
+Etiam hendrerit tristique faucibus. Quisque ultricies id sapien sed rhoncus. Aenean eget lectus vel elit molestie faucibus. Donec quis erat a ipsum pretium condimentum non a tortor. Nulla facilisi. Aenean rutrum quam condimentum nulla aliquet, vitae accumsan enim semper. Donec tristique mattis felis, a tincidunt quam luctus in. Nunc tempus eu velit non vulputate. Donec in mauris libero. Fusce quis nisl ut urna consequat dictum. Donec sagittis mi mi, vitae interdum ligula ullamcorper a.
+</div>
+
+    </div>
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">New Course added IOT</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+Nunc ullamcorper, arcu at eleifend pulvinar, sapien sapien cursus eros, in aliquet ligula nisi quis dolor. Donec dictum lacinia lorem, a ullamcorper odio tristique imperdiet. Morbi quis libero eu est facilisis rhoncus. Sed leo risus, bibendum a porttitor ut, egestas nec neque. Curabitur pellentesque felis vel nulla dictum consectetur. Vivamus at tincidunt erat, eget finibus est. Integer sed tincidunt felis. Pellentesque ipsum nulla, elementum quis metus id, faucibus vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras rutrum metus mauris, in aliquam nunc ultrices a. Proin sodales eros ac fermentum auctor. In luctus, ipsum a euismod mattis, nibh tortor posuere arcu, et efficitur lectus tellus a orci. Quisque tincidunt ipsum est, sit amet consequat arcu gravida vel. Nunc eu luctus lectus. In sit amet mi hendrerit, consequat nunc eu, sagittis sapien.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec posuere facilisis posuere. Quisque a euismod est. Nullam nunc ipsum, luctus et porta vitae, aliquet dignissim lorem. Nam a porta mi. Maecenas ac augue sapien. Suspendisse aliquet elit leo.</div>
+
+    </div>
+
+    <div class="panel panel-warning">
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">News Title x</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+Nunc ullamcorper, arcu at eleifend pulvinar, sapien sapien cursus eros, in aliquet ligula nisi quis dolor. Donec dictum lacinia lorem, a ullamcorper odio tristique imperdiet. Morbi quis libero eu est facilisis rhoncus. Sed leo risus, bibendum a porttitor ut, egestas nec neque. Curabitur pellentesque felis vel nulla dictum consectetur. Vivamus at tincidunt erat, eget finibus est. Integer sed tincidunt felis. Pellentesque ipsum nulla, elementum quis metus id, faucibus vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras rutrum metus mauris, in aliquam nunc ultrices a. Proin sodales eros ac fermentum auctor. In luctus, ipsum a euismod mattis, nibh tortor posuere arcu, et efficitur lectus tellus a orci. Quisque tincidunt ipsum est, sit amet consequat arcu gravida vel. Nunc eu luctus lectus. In sit amet mi hendrerit, consequat nunc eu, sagittis sapien.
+</div>
+
+    </div>
+
+    <div class="panel panel-danger">
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Resume blahb lahb</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+Nunc ullamcorper, arcu at eleifend pulvinar, sapien sapien cursus eros, in aliquet ligula nisi quis dolor. Donec dictum lacinia lorem, a ullamcorper odio tristique imperdiet. Morbi quis libero eu est facilisis rhoncus. Sed leo risus, bibendum a porttitor ut, egestas nec neque. Curabitur pellentesque felis vel nulla dictum consectetur. Vivamus at tincidunt erat, eget finibus est. Integer sed tincidunt felis. Pellentesque ipsum nulla, elementum quis metus id, faucibus vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras rutrum metus mauris, in aliquam nunc ultrices a. Proin sodales eros ac fermentum auctor. In luctus, ipsum a euismod mattis, nibh tortor posuere arcu, et efficitur lectus tellus a orci. Quisque tincidunt ipsum est, sit amet consequat arcu gravida vel. Nunc eu luctus lectus. In sit amet mi hendrerit, consequat nunc eu, sagittis sapien.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec posuere facilisis posuere. Quisque a euismod est. Nullam nunc ipsum, luctus et porta vitae, aliquet dignissim lorem. Nam a porta mi. Maecenas ac augue sapien. Suspendisse aliquet elit leo, a egestas magna egestas eu. Donec tempus venenatis nulla, placerat blandit elit malesuada in. Fusce porttitor et felis non molestie. Ut eget vulputate quam. Etiam accumsan, nibh ac bibendum rutrum, metus nunc tempus nulla, at facilisis ligula velit sit amet diam. Sed turpis urna, vestibulum vel diam id, porttitor pretium libero. Etiam purus libero, viverra et vehicula et, faucibus ut est. Vivamus sit amet lectus quis elit finibus hendrerit.
+ </div>
+
+    </div>
+
+
+			</div>
+
+
+		</div>
+	</div>	
+</div>
+
+<script>
+		function htmlbodyHeightUpdate(){
+		var height3 = $( window ).height()
+		var height1 = $('.nav').height()+50
+		height2 = $('.main').height()
+		if(height2 > height3){
+			$('html').height(Math.max(height1,height3,height2)+10);
+			$('body').height(Math.max(height1,height3,height2)+10);
+		}
+		else
+		{
+			$('html').height(Math.max(height1,height3,height2));
+			$('body').height(Math.max(height1,height3,height2));
+		}
+		
+	}
+	$(document).ready(function () {
+		htmlbodyHeightUpdate()
+		$( window ).resize(function() {
+			htmlbodyHeightUpdate()
+		});
+		$( window ).scroll(function() {
+			height2 = $('.main').height()
+  			htmlbodyHeightUpdate()
+		});
+	});
+</script>
+</body>
+</html>

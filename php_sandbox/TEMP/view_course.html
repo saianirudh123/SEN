@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Courses View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-static-top" >
+		
+			<div class="container">
+			
+				<a href="#" class="navbar-brand">Online Academia</a> 						<!-- to write stuff on nav bar -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					
+				</button>
+				
+				<div class ="collapse navbar-collapse navHeaderCollapse">
+					<ul class="nav navbar-nav navbar-right">					<!-- first two for styling and the next one for positioning -->
+						<form class="navbar-form navbar-left" role="search">
+						
+							<div class="search_bar">
+								<input type="text" class="form-control" placeholder="Search">
+								<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+							</div>
+						</form>
+						
+						<li><a href="#" class="navbar-brand">Home</a></li>
+						<li><a href="#" class="navbar-brand">Profile</a></li>
+						<li><a href="#" class="navbar-brand">Settings</a></li>
+						<li><a href="#" class="navbar-brand">Logout</a></li>
+						
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+<div class="container">
+	<br>
+	<br>
+
+	 <center>	<h1>Courses Offered At DA-IICT</h1> </center>
+
+
+
+  <!--/row--> 
+<div class="row">
+    <div class="col-md-12">
+
+		<div class="well-lg panel panel-default" id="toggable_box">
+		
+			<div class="panel-body" >
+			<!--	<p> here comes the navigation bar</p> -->
+				<div role="tabpanel">
+
+             <!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+
+						<li role="presentation" class="active"><a href="#it" aria-controls="it" role="tab" data-toggle="tab">Information Tech</a></li>
+						<li role="presentation" ><a href="#el" aria-controls="el" role="tab" data-toggle="tab">Electronics</a></li>
+						<li role="presentation" ><a href="#ct" aria-controls="ct" role="tab" data-toggle="tab">Communication Tech</a></li>
+						<li role="presentation" ><a href="#hm" aria-controls="hm" role="tab" data-toggle="tab">Humanities</a></li>
+						<li role="presentation" ><a href="#sc" aria-controls="sc" role="tab" data-toggle="tab">Science</a></li>
+
+					</ul>
+
+					  <!-- Tab panes -->
+					<div class="tab-content">
+						<!--About tab-->
+					  				    	
+					    <div role="tabpanel" class="tab-pane active" id="it">
+
+							
+							<div class="col-md-10 col-md-offset-1">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel ">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP1">IT 314:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseP1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel ">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP2">IT 428:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseP2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel ">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP3">IT 512:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseP3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       			</form>
+
+
+			      			</div>
+				       </div>
+
+
+				       <div role="tabpanel" class="tab-pane" id="el">
+
+							
+							<div class="col-md-10 col-md-offset-1">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseE1">EL 314:Artificial Sensors</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseE1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP2">IT 428:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseP2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseP3">IT 512:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseP3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       			</form>
+
+
+			      			</div>
+				       </div>
+					   
+					   <div role="tabpanel" class="tab-pane" id="ct">
+
+							
+							<div class="col-md-10 col-md-offset-1">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseC1">CT xxx:Communication Theory</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseC1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseC2">IT 428:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseC2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseC3">IT 512:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseC3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       			</form>
+
+
+			      			</div>
+				       </div>
+
+				       <div role="tabpanel" class="tab-pane" id="hm">
+
+							
+							<div class="col-md-10 col-md-offset-1">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseH1">HM xxx:Indian Cities in Literature</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseH1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseH2">IT 428:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseH2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseH3">IT 512:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseH3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       			</form>
+
+
+			      			</div>
+				       </div>
+					   
+					   <div role="tabpanel" class="tab-pane" id="sc">
+
+							
+							<div class="col-md-10 col-md-offset-1">
+				      			
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!-- Project 1--> 
+				      				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseS1">SC xxx: Theory of Everything</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseS1" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseS2">IT 428:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseS2" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+
+				       				<div class="panel">
+				            			<div class="panel-heading">
+				                			<h4 class="panel-title">
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseS3">IT 512:Artificial Intelligence</a>
+				                			</h4>
+				            			</div>
+
+				            			<div id="collapseS3" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                				
+
+				                					<label class="col-lg-4">Instructor:</label>
+				          							<p class="col-lg-8">Sourish Das Gupta</p>
+													<label class="col-lg-4">Teaching Assistant:</label>
+				          							<p class="col-lg-8">Dushyant</p>
+				                    				<label class="col-lg-4">Semester:</label>
+				                          			<p class="col-lg-8">Winter</p>
+													<label class="col-lg-4">Credits:</label>
+				          							<p class="col-lg-8">3-0-0-4</p>
+													<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8">A brief decription of the course goes in here...</p>
+			          						
+				        					</div>
+				            			</div>
+				       				</div>
+
+				       			</form>
+
+
+			      			</div>
+				       </div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<!--/container-->
+</body>
+</html>-

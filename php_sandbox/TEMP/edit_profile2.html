@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+	
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-static-top" >
+		
+			<div class="container">
+			
+				<a href="#" class="navbar-brand">Online Academia</a> 
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					
+				</button>
+				
+				<div class ="collapse navbar-collapse navHeaderCollapse">
+					<ul class="nav navbar-nav navbar-right">					<!-- first two for styling and the next one for positioning -->
+						<form class="navbar-form navbar-left" role="search">
+						
+							<div class="search_bar">
+								<input type="text" class="form-control" placeholder="Search">
+								<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+							</div>
+						</form>
+						
+						<li><a href="homepage.html" class="navbar-brand">Home</a></li>
+						<li><a href="view_profile.html" class="navbar-brand">Profile</a></li>
+
+
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="#">Change Password</a></li>
+						    <li><a href="#">Edit Profile</a></li>
+						    <li><a href="#">Something else here</a></li>
+						    <li class="divider"></li>
+						    <li><a href="#">Separated link</a></li>
+						    <li class="divider"></li>
+						    <li><a href="#">One more separated link</a></li>
+						  </ul>
+						</li>
+			
+						</li>
+						<li><a href="index.html" class="navbar-brand">Logout</a></li>
+						
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+
+
+    
+
+	<div class="container" style="padding-top: 0px;">
+		<h2 class="page-header">Edit Profile</h2>
+	<div class="row">
+
+  
+    <!-- left column -->
+    <div class="col-md-4 ">
+      <div class="text-center">
+			<img src="images/default_profile_image.png" class="avatar img-circle img-thumbnail" alt="Display Pic">
+			<h6><i>Change profile picture</i></h6>
+			<input type="file" class="text-center center-block well well-sm">
+      </div>
+      
+    </div>
+	
+    <!-- edit form column -->
+    <div class="col-md-8 personal-info">
+		<h2>Project Details</h2>
+			
+				<form class="form-horizontal" role="form" style="padding:10px;">
+	  
+						<div class="form-group" >
+							<label class="col-md-3 control-label">Title:</label>
+							<div class="col-md-7">
+								<input class="form-control" placeholder="Angry Bird Bot" type="text">
+							</div>
+						</div>
+						
+						<div class="form-group" >
+							<label class="col-md-3 control-label">Description:</label>
+							<div class="col-md-7">
+								<textarea class="form-control" placeholder="Simulated an artificially intelligent bot for the popular game Angry birds which could compete with human players." type="text" rows="5"></textarea>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-3 control-label">From:</label>
+							<div class="col-lg-4">
+								<input class="form-control" value="" type="month">
+							</div>
+		  
+							<label class="col-lg-1 control-label">To:</label>
+							<div class="col-lg-4">
+								<input class="form-control" value="" type="month">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-3 control-label">Status:</label>
+							<div class="col-lg-4">
+								<div class="ui-select">
+									<select id="Status" class="form-control">
+										<option placeholder="">Completed</option>
+										<option placeholder="">Ongoing</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group" >
+							<label class="col-lg-3 control-label">Guide:</label>
+							<div class="col-lg-7">
+								<input class="form-control" placeholder="Prof. Sourish Das Gupta" type="text">
+							</div>
+						</div>
+						
+						<div class="form-group" >
+							<label class="col-lg-3 control-label">Associates:</label>
+							<div class="col-lg-7">
+								<input class="form-control" placeholder="Members of Project" type="text">
+							</div>
+						</div>
+						
+						<div class="form-group" >
+							<label class="col-lg-3 control-label">Other Information:</label>
+							<div class="col-lg-7">
+								<input class="form-control" placeholder="Funding Organisation" type="text">
+							</div>
+						</div>
+						
+						
+					</form>
+								
+				</div>			
+			</div>
+								
+		
+  </div>
+					<div class="col-md-8 col-md-offset-7 ">
+									<a href="edit_profile2.html"><button type="submit" class="btn btn-warning">Add new </button></a>
+									<button type="submit" class="btn btn-primary ">Save and Finish</button>
+									<input class="btn btn-default " value="Cancel" type="reset">
+					</div>
+  </div>
+  </div>
+		
+</body>
+</html>
