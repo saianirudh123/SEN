@@ -16,7 +16,6 @@ div.li {
 }
 
 .navbar.navbar-inverse.navbar-static-top a {
-	color:white;
 	font-size: 18px;
 }
 
@@ -30,7 +29,6 @@ div.li {
 
 
 .nav.navbar-nav.navbar-right li a{
-	color: #fff0fd;
 	font-family:georgia,cambria;
 	font-size: 14px;
 }
