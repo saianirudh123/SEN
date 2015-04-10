@@ -7,11 +7,11 @@ require 'connect.inc.php';
 require_once 'change_pwd.php';
 
 	?>
-	
+	<!-- anup-->
 <?php
 function is_prof($uid)
 {
-	if(substr_compare((string)$uid, "00", 4, 2) == 0)
+	if(substr_compare((string)$uid, "00", 4, 2) == 0)//do not see
 	   return true;
 	  else
 	  return false;
