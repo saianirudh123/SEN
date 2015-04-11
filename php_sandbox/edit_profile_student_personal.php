@@ -5,8 +5,6 @@ session_start();
 <?php
 require 'connect.inc.php';
 require_once 'change_pwd.php';
-
-echo "lalala";
 ?>
 
 <?php
@@ -15,15 +13,19 @@ $uploadDir = 'upload/';
 if(isset($_POST['submit']))
 {
 $fileName = $_FILES['userfile']['name'];
+$file_name= rand(1000,9999).md5($fileName).rand(1000,9999);
 $tmpName = $_FILES['userfile']['tmp_name'];
 $fileSize = $_FILES['userfile']['size'];
 $fileType = $_FILES['userfile']['type'];
-$filePath = $uploadDir . $fileName;
+$ext=strtolower(substr($fileName,strpos($fileName,'.')+1));
+$filePath = $uploadDir . $file_name.'.'.$ext;
+$max_size=80000000;
+
+if( ($fileType=='image/jpeg' || $fileType=='image/jpg' || $fileType=='image/png') && $fileSize<=$max_size){
 
 $result = move_uploaded_file($tmpName, $filePath);
 if (!$result) {
 echo "Error uploading file";
-exit;
 }
 
 include '../library/config.php';
@@ -37,12 +39,25 @@ $filePath = addslashes($filePath);
 
 $query = "INSERT INTO `upload2`(`uid`, `name`, `type`, `size`, `path`) VALUES ( '{$_SESSION['username']}' , '{$fileName}', '{$fileType}', '{$fileSize}', '{$filePath}') ";
 
-mysql_query($query) or die('Error, query failed : ' . mysql_error());
+$query_run=mysql_query($query) ;
+if(!$query_run){
+	
+	$update_query="UPDATE `upload2` SET `name`='{$fileName}',`type`='{$fileType}',`size`='{$fileSize}',`path`='{$filePath}' WHERE `uid`={$_SESSION['username']}";
+	$query_run1=mysql_query($update_query) ;
+	if(!$query_run1){
+		echo "failed uploading image";
+	}
+	
+}
 
 include '../library/closedb.php';
 
 echo "<br>Files uploaded<br>";
 
+}
+else{
+						echo 'Error:Images Only And Less than 10 Mb';
+				}	
 }
 ?>
 
@@ -310,7 +325,7 @@ if(isset($_POST['submit'])){
           </div>
         </div>
         <div class="form-group" >
-          <label class="col-lg-3 control-label">First name:</label>
+          <label class="col-lg-3 control-label">First name<sup>*</sup>:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="fname" placeholder="Anup" type="text">
           </div>
@@ -323,14 +338,14 @@ if(isset($_POST['submit'])){
         </div>
 		
         <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
+          <label class="col-lg-3 control-label">Last name<sup>*</sup>:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="lname" placeholder="Rai" type="text">
           </div>
         </div>
 		
         <div class="form-group">
-          <label class="col-lg-3 control-label">Gender:</label>
+          <label class="col-lg-3 control-label">Gender<sup>*</sup>:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="sex" placeholder="M/F" type="text">
           </div>
