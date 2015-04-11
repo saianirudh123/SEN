@@ -149,7 +149,7 @@ require_once 'change_pwd.php';
       <div class="well-lg panel panel-default" id="profile_box">
         <div class="panel-body" >
           <div class="row">
-            <div class="col-sm-3 text-center col-sm-offset-1"><!---change the size of the picture--->
+			<div class="col-xs-10 col-sm-3 text-center"><!---change the size of the picture-->
               <img src="<?php
 $sql="SELECT * FROM `upload2` WHERE `uid`={$_SESSION['username']}";
 $result = mysql_query($sql);
@@ -163,6 +163,11 @@ $result = mysql_query($sql);
 ?>" alt="" class="center-block img-circle img-thumbnail img-responsive">
 			  <br>
 			   <button class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i> Follow </button>
+			   <div class="row">
+			   	<br>
+			   </div>
+			   <button class="btn btn-warning"><i class="glyphicon glyphicon-plus-sign"></i> Request Resume | Edit Link </button>
+
             </div>
             <!--/col--> 
             <div class="col-xs-12 col-sm-7 col-sm-offset-1" id="panel_content">
@@ -264,7 +269,7 @@ $result = mysql_query($sql);
 				      				<!-- Project 1--> 
 									
 									<?php 
-								$sql = "SELECT `pro_id`,`title`,`des`,`from`,`to`,`guide`,`funding_org` FROM `project` WHERE `pro_id`=(SELECT `pid` FROM `rel_proj_login` WHERE `uid`=201201221)";
+								$sql="SELECT * FROM `rel_proj_login` WHERE `uid`={$_SESSION['username']}"	;
 								
 								$result = mysqli_query($connection,$sql);
 								if(!$result)
@@ -274,29 +279,45 @@ $result = mysql_query($sql);
 									$i=0;
 								while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 									$i++;
+				
+									$sql_in = "SELECT * FROM `project` WHERE `pro_id`={$row['pid']}";
+									$result_in = mysqli_query($connection,$sql_in);
+									if(!$result_in)
+									 {
+										 die('Could not get data: ' . mysql_error());
+									 }
+									while ($row_in = mysqli_fetch_array($result_in, MYSQL_ASSOC)) {
 									?>
 				      				<div class="panel panel-default">
-				            			<div class="panel-heading">
+				            			<div class="panel-heading" style="padding:0;">
 				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseProj<?=$i?>"><?php $pro_id=$row['pro_id'];echo  $row['title'] ; ?></a>
+				                    		<!--
+											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseProj<?=$i?>"><?php $pro_id=$row_in['pro_id'];echo  $row_in['title'] ; ?></a>
+											-->
+											<button type="button" id="btn_icon<?=$i?>" class="btn_icon btn btn-default btn-block accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseProj<?=$i?>">
+											  <div class="pull-left" >
+												<?php $pro_id=$row_in['pro_id'];echo  $row_in['title'] ; ?>
+											  </div>
+											  <span class="btn_glyphicon glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"></span>
+											</button>
 				                			</h4>
 				            			</div>
 				            			<div id="collapseProj<?=$i?>" class="panel-collapse collapse out">
 				                			<div class="panel-body">
 				                			
 				                    				<label class="col-lg-4">Description:</label>
-				                          			<p class="col-lg-8"><?php echo  $row['des'] ; ?></p>
+				                          			<p class="col-lg-8"><?php echo  $row_in['des'] ; ?></p>
 													<label class="col-lg-4">From:</label>
-				          							<p class="col-lg-8"><?php echo  $row['from'] ; ?></p>
+				          							<p class="col-lg-8"><?php echo  $row_in['from'] ; ?></p>
 													<label class="col-lg-4">To:</label>
-				          							<p class="col-lg-8"><?php echo  $row['to'] ; ?></p>
+				          							<p class="col-lg-8"><?php echo  $row_in['to'] ; ?></p>
 													<label class="col-lg-4">Status:</label>
 				          							<p class="col-lg-8">Completed or on-going</p>
 													<label class="col-lg-4">Guide:</label>
-				          							<p class="col-lg-8"><?php echo  $row['guide'] ; ?></p>
+				          							<p class="col-lg-8"><?php echo  $row_in['guide'] ; ?></p>
 													<label class="col-lg-4">Associates:</label>
 													<p class="col-lg-8"><?php 
-													$sql2="SELECT `uid` FROM `rel_proj_login` WHERE `pid`=(SELECT `pid` FROM `rel_proj_login` WHERE `uid`=201201221)";
+													$sql2="SELECT `uid` FROM `rel_proj_login` WHERE `pid`={$row_in['pro_id']}";
 													$result1 = mysqli_query($connection,$sql2);
 													if(!$result1)
 													 {
@@ -310,13 +331,13 @@ $result = mysql_query($sql);
 													<?php } ?></p>
 													
 													<label class="col-lg-4">Funding Organisation:</label>
-				          							<p class="col-lg-8"><?php echo  $row['funding_org'] ; ?></p>
+				          							<p class="col-lg-8"><?php echo  $row_in['funding_org'] ; ?></p>
 
 				          						
 				        					</div>
 				            			</div>
 				       				</div>
-<?php } ?>
+								<?php } } ?>
 				       			</form>
 
 
@@ -328,21 +349,18 @@ $result = mysql_query($sql);
 
 			 <!--publications tab-->
 					    <div role="tabpanel" class="tab-pane fade" id="publications">
+					    	<div class="col-md-10 ">
 					    	
-					    	
-
-				       			<!-- research paper started -->
-				       			
-				       			<h2>Research Paper</h2>
-				       			<form class="form-horizontal" role="form" style="padding:10px;">
+						      			<h2>Books</h2>
+				      			<form class="form-horizontal" role="form" style="padding:10px;">
 				      				<!--copy --> 
 				      				<div class="panel panel-default">
 				            			<div class="panel-heading">
 				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour">Research paper one</a>
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Operating Systems</a>
 				                			</h4>
 				            			</div>
-				            			<div id="collapsefour" class="panel-collapse collapse out">
+				            			<div id="collapseOne" class="panel-collapse collapse out">
 				                			<div class="panel-body">
 				                			<!-- Anuj Copy -->
 				                    				<label class="col-lg-4">Authors:</label>
@@ -351,14 +369,7 @@ $result = mysql_query($sql);
 				          							<p class="col-lg-8">25,august,1993</p>
 				          							<label class="col-lg-4">Description:</label>
 				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          							<label class="col-lg-4">Journal:</label>
-				          							<p class="col-lg-8">Published in Harvard Sept issue</p>
-				          							<label class="col-lg-4">Conference:</label>
-				          							<p class="col-lg-8">Discussed at academic union</p>
-				          							<label class="col-lg-4">Status:</label>
-				          							<p class="col-lg-8">Pending</p>
-				          							<label class="col-lg-4">Link:</label>
-				          							<p class="col-lg-8"><a href="#">www.google.com</a></p>
+				          						
 				        					</div>
 				            			</div>
 				       				</div>
@@ -367,12 +378,11 @@ $result = mysql_query($sql);
 				       				<div class="panel panel-default">
 				            			<div class="panel-heading">
 				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">Research paper two</a>
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo">Computer Networks</a>
 				                			</h4>
 				            			</div>
-				            			<div id="collapsefive" class="panel-collapse collapse out">
+				            			<div id="collapsetwo" class="panel-collapse collapse out">
 				                			<div class="panel-body">
-				                			
 				                			<!-- Anuj Copy -->
 				                    				<label class="col-lg-4">Authors:</label>
 				                          			<p class="col-lg-8">This is where the database part goes.</p>
@@ -380,18 +390,8 @@ $result = mysql_query($sql);
 				          							<p class="col-lg-8">25,august,1993</p>
 				          							<label class="col-lg-4">Description:</label>
 				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          							<label class="col-lg-4">Journal:</label>
-				          							<p class="col-lg-8">Published in Harvard Sept issue</p>
-				          							<label class="col-lg-4">Conference:</label>
-				          							<p class="col-lg-8">Discussed at academic union</p>
-				          							<label class="col-lg-4">Status:</label>
-				          							<p class="col-lg-8">Pending</p>
-				          							<label class="col-lg-4">Link:</label>
-				          							<p class="col-lg-8"><a href="#">www.google.com</a></p>
 				          						
 				        					</div>
-				       
-				                			
 				            			</div>
 				       				</div>
 
@@ -399,10 +399,10 @@ $result = mysql_query($sql);
 				       				<div class="panel panel-default">
 				            			<div class="panel-heading">
 				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsesix">Research paper three</a>
+				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsethree">DBMS</a>
 				                			</h4>
 				            			</div>
-				            			<div id="collapsesix" class="panel-collapse collapse out">
+				            			<div id="collapsethree" class="panel-collapse collapse out">
 				                			<div class="panel-body">
 				                			<!-- Anuj Copy -->
 				                    				<label class="col-lg-4">Authors:</label>
@@ -411,25 +411,79 @@ $result = mysql_query($sql);
 				          							<p class="col-lg-8">25,august,1993</p>
 				          							<label class="col-lg-4">Description:</label>
 				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          							<label class="col-lg-4">Journal:</label>
-				          							<p class="col-lg-8">Published in Harvard Sept issue</p>
-				          							<label class="col-lg-4">Conference:</label>
-				          							<p class="col-lg-8">Discussed at academic union</p>
-				          							<label class="col-lg-4">Status:</label>
-				          							<p class="col-lg-8">Pending</p>
-				          							<label class="col-lg-4">Link:</label>
-				          							<p class="col-lg-8"><a href="#">www.google.com</a></p>
 				          						
 				        					</div>
 				            			</div>
 				       				</div>
+				       			</form>
+
+			    	
+
+				       			<!-- research paper started -->
+				       			
+				       			<h2>Research Paper</h2>
+				       			<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!--copy --> 
+									<?php 
+								$sql="SELECT * FROM `publications_user` WHERE `uid`=201201221"	;
+								
+								$result = mysqli_query($connection,$sql);
+								if(!$result)
+								 {
+									 die('Could not get data: ' . mysql_error());
+								 }
+									$i=0;
+								while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+									$i++;
+				
+									$sql_in = "SELECT * FROM `publications` WHERE `pub_id`={$row['pub_id']}";
+									$result_in = mysqli_query($connection,$sql_in);
+									if(!$result_in)
+									 {
+										 die('Could not get data: ' . mysql_error());
+									 }
+									while ($row_in = mysqli_fetch_array($result_in, MYSQL_ASSOC)) {
+									?>	
+				      				<div class="panel panel-default">
+				            			<div class="panel-heading" style="padding:0;">
+				                			<h4 class="panel-title">
+				                    		<!--<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour<?=$i?>"><?php echo  $row_in['topic'] ; ?></a>-->
+											<button type="button" id="btn_icon<?=$i?>" class="btn_icon btn btn-default btn-block accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour<?=$i?>">
+											  <div class="pull-left" >
+												<?php  echo  $row_in['topic'] ;  ?>
+											  </div>
+											  <span class="btn_glyphicon glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"></span>
+											</button>
+				                			</h4>
+				            			</div>
+				            			<div id="collapsefour<?=$i?>" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			<!-- Anuj Copy -->
+				                    				<label class="col-lg-4">Authors:</label>
+				                          			<p class="col-lg-8"><?php echo  $row_in['authors'] ; ?></p>
+													<label class="col-lg-4">Year of Publications:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['date'] ; ?></p>
+				          							<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['abstract'] ; ?></p>
+				          							<label class="col-lg-4">Journal:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['journel'] ; ?></p>
+				          							<label class="col-lg-4">Conference:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['conference'] ; ?></p>
+				          							<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['status'] ; ?></p>
+				          							<label class="col-lg-4">Link:</label>
+				          							<p class="col-lg-8"><a href="#"><?php echo  $row_in['link'] ; ?></a></p>
+				        					</div>
+				            			</div>
+				       				</div>
+								<?php } } ?>
 				       			</form>	
 				      			
 					
 				      			</div>
 
 
-
+						</DIV>
 
 
 					    </div>
@@ -447,4 +501,10 @@ $result = mysql_query($sql);
 </div>
 <!--/container-->
 </body>
+<script>
+	$(".btn_icon").click(function(){
+		//alert('"#'+this.id+'"');
+		$(this).find("span").toggleClass("glyphicon-chevron-down glyphicon-chevron-up");
+	});
+</script>
 </html>
