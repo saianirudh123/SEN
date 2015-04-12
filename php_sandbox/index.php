@@ -85,10 +85,11 @@ function generateRandomString() {
 			{
 				$error_message = "Username does not exixts. Please sign up!";
 			}
+			
 			else{
 			
 			$rw = mysql_fetch_object($set);
-			if($rw->temp_pwd == $password || $rw->pwd == $password)
+			if($rw->temp_pwd == $password)
 			{
 				$_SESSION['username'] = $username;
 				if(is_prof($_SESSION['username']))
@@ -98,6 +99,12 @@ function generateRandomString() {
 /* Make sure that code below does not get executed when we redirect. */
 exit;
 			
+			}
+			else if($rw->pwd == $password)
+			{
+				$_SESSION['username'] = $username;
+				header("Location: http://localhost/php_sandbox/homepage.php"); /* Redirect browser */
+				exit;
 			}
 			else{
 				$error_message = "Username/Password Incorrect. Please try again";
