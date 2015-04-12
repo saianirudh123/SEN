@@ -1,11 +1,25 @@
 <?php
 session_start();
-
 ?>
 <?php
 require 'connect.inc.php';
 require_once 'change_pwd.php';
 
+?>
+<?php
+  if(isset($_POST['Add_Project'])){
+  	header("Location: http://localhost/php_sandbox/project_edit.html"); /* Redirect browser */
+  exit;
+  }
+   if(isset($_POST['Add_Book'])){
+  	header("Location: http://localhost/php_sandbox/publication_Books_edit.php"); /* Redirect browser */
+  exit;
+  }
+   if(isset($_POST['Add_Res_Paper'])){
+  	header("Location: http://localhost/php_sandbox/publication_rp_edit.php"); /* Redirect browser */
+  exit;
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +56,6 @@ require_once 'change_pwd.php';
 	$contact= $rowinf['contact'];
 	$yoj    = $rowinf['yoj'];
 	//echo "$yoj";
-	$sqlpos="SELECT * FROM  `positions` WHERE  `uid` =$uid";
-	$resultalma = mysqli_query($connection,$sqlpos);
-	$rowpos = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
-	$positions=$rowpos['positions'];
 
 	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =1" ;					
 	$resultalma = mysqli_query($connection,$sqlinfo);
@@ -179,9 +189,9 @@ $result = mysql_query($sql);
 			<center>
               <h2  style="font-family:Monospace; font-size:36px;"><?php echo $desg .' '. $fname.' '.$mname.' '.$lname ; ?> </h2>
 			  <br>
-
-				<p><strong>ID: </strong><?php echo  $uid ?></p>
-			  <p><strong>Position: </strong><?php echo $positions ?></p>
+			  
+			  <p><strong>ID: </strong><?php echo  $uid ?></p>
+			  <p><strong>Position: </strong>Intern at XYZ or Student or Prof or TA.</p>
               <p><strong>Area of Interests: </strong> <?php 
 													$sql2="SELECT * FROM  `rel_uid_aoi` WHERE  `uid` ='$uid'";
 													$result1 = mysqli_query($connection,$sql2);
@@ -198,23 +208,12 @@ $result = mysql_query($sql);
 													
 											
               <p><strong>Skills: </strong>
-                <span class="label label-info tags"><?php 
-													$sql2="SELECT * FROM  `skils` WHERE  `uid` ='$uid'";
-													$result1 = mysqli_query($connection,$sql2);
-													if(!$result1)
-													 {
-														 die('Could not get data: ' . mysql_error());
-													 }
-														while ($row1 = mysqli_fetch_array($result1, MYSQL_ASSOC)){
-													?>
-													
-				          							<?php	echo  $row1['skill'];echo ","; ?>
-													<?php } ?></span> 
-                <!--<span class="label label-info tags">css3</span>
+                <span class="label label-info tags">html5</span> 
+                <span class="label label-info tags">css3</span>
                 <span class="label label-info tags">jquery</span>
-                <span class="label label-info tags">php</span>-->
+                <span class="label label-info tags">php</span>
               </p>
-			  <p><i class="glyphicon glyphicon-earphone"></i><strong> : </strong><?php echo  $contact ; ?></p>
+			   <p><i class="glyphicon glyphicon-earphone"></i><strong> : </strong><?php echo  $contact ; ?></p>
 			  <p><i class="glyphicon glyphicon-envelope"></i><strong> : </strong><?php echo  $otheremail ?></p>
 			</center>
             </div>
@@ -251,25 +250,24 @@ $result = mysql_query($sql);
 					    <div role="tabpanel" class="tab-pane active" id="about">
 
 
-			    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
-						<p class="col-lg-9 control-label"><?php if($details) echo  $details ; else echo "NA" ; ?>  </p> 
-						
-						<!--if($stream!=NULL)-->
+					    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
+						<p class="col-lg-9 control-label"><?php echo  $details ; ?>  </p> 
+
 						<p class="col-lg-3 control-label"><strong>Stream :</strong></p>
 						<p class="col-lg-9 control-label">BTech(ICT)</p>
 
 						<p class="col-lg-3 control-label"><strong>High School :</strong></p> 
-						<p class="col-lg-9 control-label"><?php if($halma) echo  $halma ;else echo "NA"; ?>  <label><?php if($hyear!=NULL) echo  " ( ".$hyear." ) ";  else echo "("."NA".")" ;?></label></p> 
+						<p class="col-lg-9 control-label"><?php echo  $halma ; ?>  <label><?php echo  $hyear ; ?></label></p> 
 
 						<p class="col-lg-3 control-label"><strong>Intermediate/12 :</strong></p> 
-						<p class="col-lg-9 control-label"><?php if($ialma!=NULL) echo  $ialma ; else echo "NA" ; ?>  <label><?php if($iyear!=NULL)echo  " ( ".$iyear." )" ;  else echo "("."NA".")" ;?></label></p> 
+						<p class="col-lg-9 control-label"><?php echo  $ialma ; ?>  <label><?php echo  $iyear ; ?></label></p> 
 
 						
 						<p class="col-lg-3 control-label"><strong>Under Graduate :</strong></p> 
-						<p class="col-lg-9 control-label"><?php if($ualma!=NULL) echo  $ualma ; else echo "NA" ; ?><label><?php if($uyear!=NULL) echo " ( ".$uyear." )";  else echo "("."NA".")"  ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php echo  $ualma ; ?><label><?php echo  $uyear ; ?></label></p> 
 						
 						<p class="col-lg-3 control-label"><strong>Post Graduate :</strong></p> 
-						<p class="col-lg-9 control-label"><?php if($palma!=NULL) echo  $palma ; else echo "NA" ; ?> <label><?php if($pyear!=NULL) echo  " ( ".$pyear." )" ; else echo "("."NA".")" ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php echo  $palma ; ?> <label><?php echo  $pyear ; ?></label></p> 
 
 						
 
@@ -282,9 +280,12 @@ $result = mysql_query($sql);
 							
 								<div class="col-md-10 col-sm-6 col-xs-12 personal-info">
 				      			<h2></h2>
-				      			<form class="form-horizontal" role="form" style="padding:10px;">
+								<form method="post">
+								<button class="btn btn-default" name="Add_Project" type="Submit" value="Add_Project">Add Project</button>
+				      			</form>
+								<form class="form-horizontal" role="form" style="padding:10px;">
 				      				<!-- Project 1--> 
-									
+								 						
 									<?php 
 								$sql="SELECT * FROM `rel_proj_login` WHERE `uid`={$_SESSION['username']}"	;
 								
@@ -369,80 +370,13 @@ $result = mysql_query($sql);
 					    	<div class="col-md-10 ">
 					    	
 						      			<h2>Books</h2>
-				      			<form class="form-horizontal" role="form" style="padding:10px;">
-				      				<!--copy --> 
-				      				<div class="panel panel-default">
-				            			<div class="panel-heading">
-				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Operating Systems</a>
-				                			</h4>
-				            			</div>
-				            			<div id="collapseOne" class="panel-collapse collapse out">
-				                			<div class="panel-body">
-				                			<!-- Anuj Copy -->
-				                    				<label class="col-lg-4">Authors:</label>
-				                          			<p class="col-lg-8">This is where the database part goes.</p>
-													<label class="col-lg-4">Year of Publications:</label>
-				          							<p class="col-lg-8">25,august,1993</p>
-				          							<label class="col-lg-4">Description:</label>
-				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          						
-				        					</div>
-				            			</div>
-				       				</div>
-
-				       				<!-- book 2-->
-				       				<div class="panel panel-default">
-				            			<div class="panel-heading">
-				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo">Computer Networks</a>
-				                			</h4>
-				            			</div>
-				            			<div id="collapsetwo" class="panel-collapse collapse out">
-				                			<div class="panel-body">
-				                			<!-- Anuj Copy -->
-				                    				<label class="col-lg-4">Authors:</label>
-				                          			<p class="col-lg-8">This is where the database part goes.</p>
-													<label class="col-lg-4">Year of Publications:</label>
-				          							<p class="col-lg-8">25,august,1993</p>
-				          							<label class="col-lg-4">Description:</label>
-				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          						
-				        					</div>
-				            			</div>
-				       				</div>
-
-				       				<!-- book 3-->
-				       				<div class="panel panel-default">
-				            			<div class="panel-heading">
-				                			<h4 class="panel-title">
-				                    		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsethree">DBMS</a>
-				                			</h4>
-				            			</div>
-				            			<div id="collapsethree" class="panel-collapse collapse out">
-				                			<div class="panel-body">
-				                			<!-- Anuj Copy -->
-				                    				<label class="col-lg-4">Authors:</label>
-				                          			<p class="col-lg-8">This is where the database part goes.</p>
-													<label class="col-lg-4">Year of Publications:</label>
-				          							<p class="col-lg-8">25,august,1993</p>
-				          							<label class="col-lg-4">Description:</label>
-				          							<p class="col-lg-8">This is where the database part goes. This is where the database part goes. This is where the database part goes. This is where the database part goes</p>
-				          						
-				        					</div>
-				            			</div>
-				       				</div>
-				       			</form>
-
-			    	
-
-				       			<!-- research paper started -->
-				       			
-				       			<h2>Research Paper</h2>
-				       			<form class="form-horizontal" role="form" style="padding:10px;">
+										<form method="post">
+										<button class="btn btn-default" name="Add_Book" type="Submit" value="Add_Book">Add Book</button>
+										</form>
+								<form class="form-horizontal" role="form" style="padding:10px;">
 				      				<!--copy --> 
 									<?php 
-								$sql="SELECT * FROM `publications_user` WHERE `uid`=201201221"	;
+								$sql="SELECT * FROM `publications_user` WHERE `uid`={$_SESSION['username']}"	;
 								
 								$result = mysqli_query($connection,$sql);
 								if(!$result)
@@ -453,7 +387,72 @@ $result = mysql_query($sql);
 								while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 									$i++;
 				
-									$sql_in = "SELECT * FROM `publications` WHERE `pub_id`={$row['pub_id']}";
+									$sql_in = "SELECT * FROM `publications` WHERE `pub_id`={$row['pub_id']} AND`pub_type`=2";
+									$result_in = mysqli_query($connection,$sql_in);
+									if(!$result_in)
+									 {
+										 die('Could not get data: ' . mysql_error());
+									 }
+									while ($row_in = mysqli_fetch_array($result_in, MYSQL_ASSOC)) {
+									?>	
+				      				<div class="panel panel-default">
+				            			<div class="panel-heading" style="padding:0;">
+				                			<h4 class="panel-title">
+				                    		<!--<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour<?=$i?>"><?php echo  $row_in['topic'] ; ?></a>-->
+											<button type="button" id="btn_icon<?=$i?>" class="btn_icon btn btn-default btn-block accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour<?=$i?>">
+											  <div class="pull-left" >
+												<?php  echo  $row_in['topic'] ;  ?>
+											  </div>
+											  <span class="btn_glyphicon glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"></span>
+											</button>
+				                			</h4>
+				            			</div>
+				            			<div id="collapsefour<?=$i?>" class="panel-collapse collapse out">
+				                			<div class="panel-body">
+				                			<!-- Anuj Copy -->
+				                    				<label class="col-lg-4">Authors:</label>
+				                          			<p class="col-lg-8"><?php echo  $row_in['authors'] ; ?></p>
+													<label class="col-lg-4">Year of Publications:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['date'] ; ?></p>
+				          							<label class="col-lg-4">Description:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['abstract'] ; ?></p>
+				          							<label class="col-lg-4">Journal:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['journel'] ; ?></p>
+				          							<label class="col-lg-4">Conference:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['conference'] ; ?></p>
+				          							<label class="col-lg-4">Status:</label>
+				          							<p class="col-lg-8"><?php echo  $row_in['status'] ; ?></p>
+				          							<label class="col-lg-4">Link:</label>
+				          							<p class="col-lg-8"><a href="#"><?php echo  $row_in['link'] ; ?></a></p>
+				        					</div>
+				            			</div>
+				       				</div>
+								<?php } } ?>
+				       			</form>
+
+			    	
+
+				       			<!-- research paper started -->
+				       			
+				       			<h2>Research Paper</h2>
+								<form method="post">
+				       		<button class="btn btn-default" name="Add_Res_Paper" type="submit" value="Add_Res_Paper">Add Research Paper</button>
+								<form action="post">
+								<form class="form-horizontal" role="form" style="padding:10px;">
+				      				<!--copy --> 
+									<?php 
+								$sql="SELECT * FROM `publications_user` WHERE `uid`={$_SESSION['username']}"	;
+								
+								$result = mysqli_query($connection,$sql);
+								if(!$result)
+								 {
+									 die('Could not get data: ' . mysql_error());
+								 }
+									$i=0;
+								while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+									$i++;
+				
+									$sql_in = "SELECT * FROM `publications` WHERE `pub_id`={$row['pub_id']} AND`pub_type`=1";
 									$result_in = mysqli_query($connection,$sql_in);
 									if(!$result_in)
 									 {
