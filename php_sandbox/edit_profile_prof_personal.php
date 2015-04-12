@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <?php
 session_start();
+
 ?>
 <?php
 require 'connect.inc.php';
@@ -13,15 +13,19 @@ $uploadDir = 'upload/';
 if(isset($_POST['submit']))
 {
 $fileName = $_FILES['userfile']['name'];
+$file_name= rand(1000,9999).md5($fileName).rand(1000,9999);
 $tmpName = $_FILES['userfile']['tmp_name'];
 $fileSize = $_FILES['userfile']['size'];
 $fileType = $_FILES['userfile']['type'];
-$filePath = $uploadDir . $fileName;
+$ext=strtolower(substr($fileName,strpos($fileName,'.')+1));
+$filePath = $uploadDir . $file_name.'.'.$ext;
+$max_size=80000000;
+
+if( ($fileType=='image/jpeg' || $fileType=='image/jpg' || $fileType=='image/png') && $fileSize<=$max_size){
 
 $result = move_uploaded_file($tmpName, $filePath);
 if (!$result) {
 echo "Error uploading file";
-exit;
 }
 
 include '../library/config.php';
@@ -35,14 +39,28 @@ $filePath = addslashes($filePath);
 
 $query = "INSERT INTO `upload2`(`uid`, `name`, `type`, `size`, `path`) VALUES ( '{$_SESSION['username']}' , '{$fileName}', '{$fileType}', '{$fileSize}', '{$filePath}') ";
 
-mysql_query($query) or die('Error, query failed : ' . mysql_error());
+$query_run=mysql_query($query) ;
+if(!$query_run){
+	
+	$update_query="UPDATE `upload2` SET `name`='{$fileName}',`type`='{$fileType}',`size`='{$fileSize}',`path`='{$filePath}' WHERE `uid`={$_SESSION['username']}";
+	$query_run1=mysql_query($update_query) ;
+	if(!$query_run1){
+		echo "failed uploading image";
+	}
+	
+}
 
 include '../library/closedb.php';
 
 echo "<br>Files uploaded<br>";
 
 }
+else{
+						echo 'Error:Images Only And Less than 10 Mb';
+				}	
+}
 ?>
+
 
 <html lang="en">
 <head>
@@ -58,21 +76,75 @@ echo "<br>Files uploaded<br>";
 </head>
 
 <?php
-	
+	//fetching personal information
+	//let us take uid to be 201201221
+	$uid= $_SESSION['username'];
+	$sqlinfo = "SELECT * FROM  `info` WHERE  `uid` ='$uid'";					
+	$result = mysqli_query($connection,$sqlinfo);
+	$rowinf = mysqli_fetch_array($result, MYSQL_ASSOC);
+	$fname = $rowinf['f_name'];
+	$mname = $rowinf['m_name'];
+	$lname = $rowinf['l_name'];
+	$desg  = $rowinf['dsg'];
+	$otheremail = $rowinf['other_email'];
+	$web_url= $rowinf['web_url'];
+	$sex    = $rowinf['sex'];
+	$details= $rowinf['details'];
+	$contact= $rowinf['contact'];
+	$yoj    = $rowinf['yoj'];
+	echo $fname;
+	$sqlpos="SELECT * FROM  `positions` WHERE  `uid` =$uid";
+	$resultalma = mysqli_query($connection,$sqlpos);
+	$rowpos = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$positions=$rowpos['positions'];
+
+
+
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =3" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$ualma=$rowalma['ins_name'];
+	$uyear=$rowalma['year'];
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =5" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$phalma=$rowalma['ins_name'];
+	$phyear=$rowalma['year'];
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =4" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$palma=$rowalma['ins_name'];
+	$pyear=$rowalma['year'];
+
+
+
 if(isset($_POST['submit'])){
-	echo "hello";
-	$uid=$_POST['uid'];
-	$fname=$_POST['fname'];
-	$mname=$_POST['mname'];
 	
-	$lname=$_POST['lname'];
-	$desg=$_POST['desg'];
-	$other_email=$_POST['otheremail'];
-	$web_url=$_POST['weburl'];
-	$sex=$_POST['sex'];
-	$details=$_POST['details'];
-	$yoj=$_POST['yoj'];
-	$contact=$_POST['contact'];
+	echo "hello";
+	if($_POST['fname']!=NULL)
+		$fname=$_POST['fname'];
+	if($_POST['mname']!=NULL)
+		$mname=$_POST['mname'];
+	if($_POST['lname']!=NULL)
+		$lname=$_POST['lname'];
+	if($_POST['desg']!=NULL)
+		$desg=$_POST['desg'];
+	if($_POST['otheremail']!=NULL)
+		$otheremail=$_POST['otheremail'];
+	if($_POST['weburl']!=NULL)
+		$web_url=$_POST['weburl'];
+	if($_POST['sex']!=NULL)
+		$sex=$_POST['sex'];
+	if($_POST['details']!=NULL)
+		$details=$_POST['details'];
+	if($_POST['yoj']!=NULL)
+		$yoj=$_POST['yoj'];
+	if($_POST['contact']!=NULL)
+		$contact=$_POST['contact'];
+	
 	
 	if($sex=="M"|| $sex=="m")
 			$sex='1';
@@ -82,11 +154,27 @@ if(isset($_POST['submit'])){
 	//Sending form data to sql db.
 	//echo $uid . " " . $fname . " " . $mname . " " . $lname . $desg . $other_email . $web_url . $sex . $details ;
 	$sql = "INSERT INTO info (uid, f_name, m_name, l_name, dsg, other_email, web_url, sex, details, contact, yoj) 
-	VALUES ('$uid', '$fname', '$mname', '$lname', '$desg', '$other_email', '$web_url', '$sex', '$details', '$contact', '$yoj')";
+	VALUES ('$uid', '$fname', '$mname', '$lname', '$desg', '$otheremail', '$web_url', '$sex', '$details', '$contact', '$yoj')";
 	$query = mysql_query($sql);
 	if(!$query)
 	{
+				echo "Lets Update";
+	
+		$sql = "UPDATE  `sen`.`info` SET  `f_name` =  '$fname',`m_name` =  '$mname',
+		`l_name` =  '$lname',
+		`dsg` =  '$desg',
+		`other_email` =  '$otheremail',
+		`web_url` =  '$web_url',
+		`sex` =  '$sex',
+		`details` =  '$details',		
+		`contact` =  '$contact',
+		`yoj` =  '$yoj' 
+		WHERE  `info`.`uid` =$uid;";
+		$query = mysql_query($sql);
+		if($query)
+			echo "Updated Sucessfully";
 		echo "nonononononononooononono";
+
 	}
 	/*if(mysqli_query($connect, $sql)
 	{
@@ -96,17 +184,19 @@ if(isset($_POST['submit'])){
 		echo "no";
 	}*/
 
-	$halma=$_POST['halma'];
-	$hyear=$_POST['hyear'];
-	$ialma=$_POST['ialma'];
-	$iyear=$_POST['iyear'];
-	$ualma=$_POST['ualma'];
-	$uyear=$_POST['uyear'];
-	$palma=$_POST['palma'];
-	$pyear=$_POST['pyear'];
-	$phalma=$_POST['phalma'];
-	$phyear=$_POST['phyear'];
-
+	if($_POST['ualma']!=NULL)
+		$ualma=$_POST['ualma'];
+	if($_POST['uyear']!=NULL)
+		$uyear=$_POST['uyear'];
+	if($_POST['palma']!=NULL)
+		$palma=$_POST['palma'];	
+	if($_POST['pyear']!=NULL)
+		$pyear=$_POST['pyear'];
+	if($_POST['phalma']!=NULL)
+		$phalma=$_POST['phalma'];
+	if($_POST['phyear']!=NULL)
+		$phyear=$_POST['phyear'];
+	
 	/*
 	if($halma)
 	{
@@ -212,6 +302,31 @@ if(isset($_POST['submit'])){
 		$sqlaoi="INSERT INTO `sen`.`rel_uid_aoi` (`uid`, `int`) VALUES ('$uid', '$aoiin[$index]');";
 		$query = mysql_query($sqlaoi);
    	}
+
+/*	$skills = $_POST['skills'];
+	$skill = explode(",", $skills);
+	for ($index = 0; $index < count($skill); $index++)
+	{
+        
+   		echo $skill[$index].",", "\n";
+		$sqlskil="INSERT INTO `sen`.`skils` (`uid`, `skill`) VALUES ('$uid', '$skill[$index]');";
+		$query = mysql_query($sqlskil);
+
+   	}
+  */ 	
+   		if($_POST['positions']!=NULL)
+   			$positions=$_POST['positions'];
+
+   	$sqpos="INSERT INTO  `sen`.`positions` (`uid` ,`positions`)
+	VALUES ('$uid',  '$positions');";
+	$query = mysql_query($sqpos);
+	if(!$query)
+	{
+		$sqpos="UPDATE  `sen`.`positions` SET  `positions` =  '$positions' WHERE  `positions`.`uid` =$uid";
+		$query = mysql_query($sqpos);	
+	}
+
+
 }
 
 
@@ -320,28 +435,28 @@ if(isset($_POST['submit'])){
         <div class="form-group" >
           <label class="col-lg-3 control-label">Designation :</label>
           <div class="col-lg-7">
-				<input class="form-control" name="desg" placeholder="Dr/Prof/Er." type="text">
+			<input class="form-control"  name="desg"  type="text" placeholder= <?php echo $desg." "."Er./Dr/Prof."?> >
           </div>
         </div>
         
         <div class="form-group" >
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-7">
-				<input class="form-control"name = "fname" placeholder="John" type="text">
-          </div>
+						<input class="form-control"  name="fname" placeholder= <?php echo $fname." "."Stephan."; ?> type="text">
+       </div>
         </div>
 		
 		<div class="form-group">
           <label class="col-lg-3 control-label">Middle name:</label>
           <div class="col-lg-7">
-				<input class="form-control" name="mname" placeholder="Kumar" type="text">
+				<input class="form-control"  name="mname" placeholder=<?php echo $mname." "."William"; ?> type="text">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-7">
-				<input class="form-control" name = "lname" placeholder="Smith" type="text">
+				<input class="form-control" name="lname" placeholder=<?php echo $lname." "."Hawking"; ?> type="text">
           </div>
         </div>
 		
@@ -352,21 +467,27 @@ if(isset($_POST['submit'])){
           </div>
         </div>
 	
-		
+		<!--
         <div class="form-group">
           <label class="col-lg-3 control-label">Webmail ID:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="uid" placeholder="9 digits" type="text">
           </div>
         </div>
-		
-		
+		-->
+		<div class="form-group">
+          <label class="col-lg-3 control-label">Web Url:</label>
+          <div class="col-lg-7">
+				<input class="form-control" name="weburl" placeholder= <?php echo $web_url." "."Linkedin/Personal_Home_Page" ; ?> type="text">
+          </div>
+        </div>
+
 		
 		 <div class="form-group">
           <label class="col-lg-3 control-label">Year of Joining:</label>
           <div class="col-lg-2">
-				<input class="form-control" name = "yoj" placeholder="20xx" type="number">
-          </div>
+				<input class="form-control" name="yoj" placeholder= <?php echo $yoj." "."2001-2015" ; ?> type="number">
+         </div>
         </div>
 		
 		
@@ -375,7 +496,7 @@ if(isset($_POST['submit'])){
 		<div class="form-group">
           <label class="col-lg-3 control-label">Achievements and Honours:</label>
            <div class="col-lg-7">
-				<textarea class="form-control" name = "aah" type="text" rows="5"></textarea>
+				<textarea class="form-control" name = "positions" placeholder=<?php echo $positions." "."Add Your Achievements" ; ?> <type="text" rows="5"></textarea>
           </div>
         </div>
 	
@@ -383,8 +504,8 @@ if(isset($_POST['submit'])){
 		<div class="form-group">
           <label class="col-lg-3 control-label">About Yourself:</label>
           <div class="col-lg-7">
-				<textarea class="form-control" name="detail" type="text" rows="5"></textarea>
-          </div>
+						<textarea class="form-control" name = "details" type="text" rows="5" placeholder= <?php echo $details." "."Tell_us_Something_About_Yourself"; ?> ></textarea>
+  </div>
         </div>
 		
 		 
@@ -404,27 +525,27 @@ if(isset($_POST['submit'])){
           </div>
         </div>
 		-->
-		
+		<!--
 		<div class="form-group">
           <label class="col-lg-3 control-label">Courses taken:</label>
           <div class="col-lg-7">
 				<input class="form-control" placeholder="Human Computer Interaction,Models of Computation" type="text">
           </div>
         </div>
-		
+		-->
         <div class="form-group">
           <label class="col-lg-3 control-label">Alternate Email:</label>
           <div class="col-lg-7">
-            <input class="form-control" name="otheremail" placeholder="abc@abc.com" type="email">
-          </div>
+             <input class="form-control" name="otheremail" placeholder= <?php echo $otheremail." "."abc@def.com"; ?> type="email">
+         </div>
         </div>
 		
 		
         <div class="form-group">
           <label class="col-lg-3 control-label">Contact Number:</label>
           <div class="col-lg-7">
-            <input class="form-control" name="contact" placeholder="10 digits" type="number">
-          </div>
+                <input class="form-control" name="contact" placeholder= <?php echo $contact." "."123456789" ; ?> type="number">
+      </div>
         </div>
 
         <hr>
@@ -433,29 +554,29 @@ if(isset($_POST['submit'])){
 		<h4>Educational Qualification</h4>
 			<div class="form-group">
 				
-				
 				<label class="col-lg-3 control-label">UG Institute</label>
 				<div class="col-lg-7">
-					<input class="form-control" name= "ualma" type="text">
+					<input class="form-control" placeholder = <?php echo $ualma." "."Dhirubhai_Ambani_Institute_Of_Information_and_Communication_Technology"; ?> name="ualma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name= "uyear" placeholder="Year" type="number">
+					<input class="form-control" name="uyear" placeholder = <?php echo $uyear." "."1948";?> type="number">
 				</div>
 				
 				<label class="col-lg-3 control-label">PG Institute</label>
 				<div class="col-lg-7">
-					<input class="form-control" name= "palma" type="text">
+					<input class="form-control" placeholder = <?php echo $palma." "."Dhirubhai Ambani Institute Of Information and Communication Technology"; ?> name="palma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name= "pyear" placeholder="Year" type="number">
+					<input class="form-control" name="pyear" placeholder = <?php echo $pyear." "."1965 "; ?> type="number">
 				</div>
 				
-				<label class="col-lg-3 control-label">PhD</label>
+							
+				<label class="col-lg-3 control-label">Phd</label>
 				<div class="col-lg-7">
-					<input class="form-control" name= "phalma" type="text">
+					<input class="form-control" placeholder = <?php echo $phalma." "."Dhirubhai Ambani Institute Of Information and Communication Technology"; ?> name="phalma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name="phyear" placeholder="Year" type="number">
+					<input class="form-control" name="phyear" placeholder = <?php echo $phyear." "."1985"; ?> type="number">
 				</div>
 				
 			</div>
