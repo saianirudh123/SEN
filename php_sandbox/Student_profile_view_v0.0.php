@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <?php
 require 'connect.inc.php';
@@ -41,6 +42,10 @@ require_once 'change_pwd.php';
 	$contact= $rowinf['contact'];
 	$yoj    = $rowinf['yoj'];
 	//echo "$yoj";
+	$sqlpos="SELECT * FROM  `positions` WHERE  `uid` =$uid";
+	$resultalma = mysqli_query($connection,$sqlpos);
+	$rowpos = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$positions=$rowpos['positions'];
 
 	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =1" ;					
 	$resultalma = mysqli_query($connection,$sqlinfo);
@@ -174,9 +179,9 @@ $result = mysql_query($sql);
 			<center>
               <h2  style="font-family:Monospace; font-size:36px;"><?php echo $desg .' '. $fname.' '.$mname.' '.$lname ; ?> </h2>
 			  <br>
-			  
-			  <p><strong>ID: </strong><?php echo  $uid ?></p>
-			  <p><strong>Position: </strong>Intern at XYZ or Student or Prof or TA.</p>
+
+				<p><strong>ID: </strong><?php echo  $uid ?></p>
+			  <p><strong>Position: </strong><?php echo $positions ?></p>
               <p><strong>Area of Interests: </strong> <?php 
 													$sql2="SELECT * FROM  `rel_uid_aoi` WHERE  `uid` ='$uid'";
 													$result1 = mysqli_query($connection,$sql2);
@@ -193,12 +198,23 @@ $result = mysql_query($sql);
 													
 											
               <p><strong>Skills: </strong>
-                <span class="label label-info tags">html5</span> 
-                <span class="label label-info tags">css3</span>
+                <span class="label label-info tags"><?php 
+													$sql2="SELECT * FROM  `skils` WHERE  `uid` ='$uid'";
+													$result1 = mysqli_query($connection,$sql2);
+													if(!$result1)
+													 {
+														 die('Could not get data: ' . mysql_error());
+													 }
+														while ($row1 = mysqli_fetch_array($result1, MYSQL_ASSOC)){
+													?>
+													
+				          							<?php	echo  $row1['skill'];echo ","; ?>
+													<?php } ?></span> 
+                <!--<span class="label label-info tags">css3</span>
                 <span class="label label-info tags">jquery</span>
-                <span class="label label-info tags">php</span>
+                <span class="label label-info tags">php</span>-->
               </p>
-			   <p><i class="glyphicon glyphicon-earphone"></i><strong> : </strong><?php echo  $contact ; ?></p>
+			  <p><i class="glyphicon glyphicon-earphone"></i><strong> : </strong><?php echo  $contact ; ?></p>
 			  <p><i class="glyphicon glyphicon-envelope"></i><strong> : </strong><?php echo  $otheremail ?></p>
 			</center>
             </div>
@@ -235,24 +251,25 @@ $result = mysql_query($sql);
 					    <div role="tabpanel" class="tab-pane active" id="about">
 
 
-					    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
-						<p class="col-lg-9 control-label"><?php echo  $details ; ?>  </p> 
-
+			    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
+						<p class="col-lg-9 control-label"><?php if($details) echo  $details ; else echo "NA" ; ?>  </p> 
+						
+						<!--if($stream!=NULL)-->
 						<p class="col-lg-3 control-label"><strong>Stream :</strong></p>
 						<p class="col-lg-9 control-label">BTech(ICT)</p>
 
 						<p class="col-lg-3 control-label"><strong>High School :</strong></p> 
-						<p class="col-lg-9 control-label"><?php echo  $halma ; ?>  <label><?php echo  $hyear ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php if($halma) echo  $halma ;else echo "NA"; ?>  <label><?php if($hyear!=NULL) echo  " ( ".$hyear." ) ";  else echo "("."NA".")" ;?></label></p> 
 
 						<p class="col-lg-3 control-label"><strong>Intermediate/12 :</strong></p> 
-						<p class="col-lg-9 control-label"><?php echo  $ialma ; ?>  <label><?php echo  $iyear ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php if($ialma!=NULL) echo  $ialma ; else echo "NA" ; ?>  <label><?php if($iyear!=NULL)echo  " ( ".$iyear." )" ;  else echo "("."NA".")" ;?></label></p> 
 
 						
 						<p class="col-lg-3 control-label"><strong>Under Graduate :</strong></p> 
-						<p class="col-lg-9 control-label"><?php echo  $ualma ; ?><label><?php echo  $uyear ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php if($ualma!=NULL) echo  $ualma ; else echo "NA" ; ?><label><?php if($uyear!=NULL) echo " ( ".$uyear." )";  else echo "("."NA".")"  ; ?></label></p> 
 						
 						<p class="col-lg-3 control-label"><strong>Post Graduate :</strong></p> 
-						<p class="col-lg-9 control-label"><?php echo  $palma ; ?> <label><?php echo  $pyear ; ?></label></p> 
+						<p class="col-lg-9 control-label"><?php if($palma!=NULL) echo  $palma ; else echo "NA" ; ?> <label><?php if($pyear!=NULL) echo  " ( ".$pyear." )" ; else echo "("."NA".")" ; ?></label></p> 
 
 						
 
