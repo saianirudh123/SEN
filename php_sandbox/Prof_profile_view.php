@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -7,11 +6,11 @@ require 'connect.inc.php';
 require_once 'change_pwd.php';
 
 	?>
-	<!-- anup-->
+	
 <?php
 function is_prof($uid)
 {
-	if(substr_compare((string)$uid, "00", 4, 2) == 0)//do not see
+	if(substr_compare((string)$uid, "00", 4, 2) == 0)
 	   return true;
 	  else
 	  return false;
@@ -34,7 +33,7 @@ function is_prof($uid)
 <?php
 	//fetching personal information
 	//let us take uid to be 201201221
-	$uid='201201003';
+	$uid=$_SESSION['username'];
 	$sqlinfo = "SELECT * FROM  `info` WHERE  `uid` ='$uid'";					
 	$result = mysqli_query($connection,$sqlinfo);
 	$rowinf = mysqli_fetch_array($result, MYSQL_ASSOC);
@@ -49,6 +48,10 @@ function is_prof($uid)
 	$contact= $rowinf['contact'];
 	$yoj    = $rowinf['yoj'];
 	//echo "$yoj";
+	$sqlpos="SELECT * FROM  `positions` WHERE  `uid` =$uid";
+	$resultalma = mysqli_query($connection,$sqlpos);
+	$rowpos = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$positions=$rowpos['positions'];
 
 	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =3" ;					
 	$resultalma = mysqli_query($connection,$sqlinfo);
@@ -163,7 +166,7 @@ function is_prof($uid)
 				  <br>
 				  
 				  <p><strong>Webmail ID: </strong><?php echo $otheremail ?></p>
-				   <p><strong>Position: </strong>Associate Professor</p>
+				   <p><strong>Position: </strong>$positions</p>
 				  <p><strong>Area of Research: </strong> <?php 
 													$sql2="SELECT * FROM  `rel_uid_aoi` WHERE  `uid` ='$uid'";
 													$result1 = mysqli_query($connection,$sql2);
@@ -217,37 +220,40 @@ function is_prof($uid)
 
 
 						    <p class="col-lg-3 control-label"><strong>About Myself :</strong></p> 
-							<p class="col-lg-9 control-label"><?php echo $details ?></p> 
+							<p class="col-lg-9 control-label"><?php if($details) echo  $details ; else echo "NA" ; ?> </p> 
 
 							<p class="col-lg-3 control-label"><strong>Year of Joining :</strong></p>
-							<p class="col-lg-9 control-label"><?php echo $yoj ?></p>
+							<p class="col-lg-9 control-label"><?php if($details) echo  $yoj ; else echo "NA" ; ?> </p>
 
 							<p class="col-lg-3 control-label"><strong>Courses Taken :</strong></p>
 							<p class="col-lg-9 control-label"><?php 
 													$sql2="SELECT * FROM  `course` WHERE  `instructor` ='$uid'";
+													echo  "`"; 
 													$result1 = mysqli_query($connection,$sql2);
 													if(!$result1)
 													 {
-														 die('Could not get data: ' . mysql_error());
+														
+													
+														die('Could not get data: ' . mysql_error());
 													 }
 														while ($row1 = mysqli_fetch_array($result1, MYSQL_ASSOC)){
 													?>
 													
 				          							<?php	echo  $row1['course_name'];echo ' ('.$row1['course_code'].')'; echo ","; ?>
 														<?php } ?></p>
-
+													<?php //if($row1==NULL) echo  "NA";?> 
 							<p class="col-lg-3 control-label"><strong>Achievements :</strong></p>
-							<p class="col-lg-9 control-label">Dr. Banerjee obtained PhD in the area of image processing from IIT, Bombay. Before joing DA-IICT, Dr. Banerjee was with several industries for 14 years working mainly as researcher.</p>
+							<p class="col-lg-9 control-label"><?php if($positions) echo  $positions ; else echo "( NA )" ; ?> </p>
 
 							
 							<p class="col-lg-3 control-label"><strong>Under Graduate :</strong></p> 
-							<p class="col-lg-9 control-label"><?php echo $ualma ?><label><?php echo '('.$uyear.')' ?></label></p> 
+							<p class="col-lg-9 control-label"><?php if($ualma) echo  $ualma ; else echo "( NA )" ; ?> <label><?php if($uyear) echo "( ".$uyear." )" ; else echo "( NA )" ; ?> </label></p> 
 
 							<p class="col-lg-3 control-label"><strong>Post Graduate :</strong></p> 
-							<p class="col-lg-9 control-label"><?php echo $palma ?><label><?php echo '('.$pyear.')' ?></label></p> 
+							<p class="col-lg-9 control-label"><?php if($palma) echo  $palma ; else echo "( NA )" ; ?> <label><?php if($pyear) echo "( ".$pyear." )"; else echo "( NA )" ; ?> </label></p> 
 								
 							<p class="col-lg-3 control-label"><strong>PhD :</strong></p> 
-							<p class="col-lg-9 control-label"><?php echo $phalma ?><label><?php echo '('.$phyear.')' ?></label></p> 
+							<p class="col-lg-9 control-label"><?php if($phalma) echo  $phalma ; else echo "( NA )" ; ?><label><?php if($phyear) echo  "( ".$phyear." )"; else echo "( NA )" ; ?> </label></p> 
 
 
 						</div>
