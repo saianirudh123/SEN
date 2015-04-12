@@ -76,20 +76,82 @@ else{
 </head>
 
 <?php
-if(isset($_POST['submit'])){
+	//fetching personal information
+	//let us take uid to be 201201221
+	$uid= $_SESSION['username'];
+	$sqlinfo = "SELECT * FROM  `info` WHERE  `uid` ='$uid'";					
+	$result = mysqli_query($connection,$sqlinfo);
+	$rowinf = mysqli_fetch_array($result, MYSQL_ASSOC);
+	$fname = $rowinf['f_name'];
+	$mname = $rowinf['m_name'];
+	$lname = $rowinf['l_name'];
+	$desg  = $rowinf['dsg'];
+	$otheremail = $rowinf['other_email'];
+	$web_url= $rowinf['web_url'];
+	$sex    = $rowinf['sex'];
+	$details= $rowinf['details'];
+	$contact= $rowinf['contact'];
+	$yoj    = $rowinf['yoj'];
+	echo $fname;
+	$sqlpos="SELECT * FROM  `positions` WHERE  `uid` =$uid";
+	$resultalma = mysqli_query($connection,$sqlpos);
+	$rowpos = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$positions=$rowpos['positions'];
+
+
+
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =1" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$halma=$rowalma['ins_name'];
+	$hyear=$rowalma['year'];
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =2" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$ialma=$rowalma['ins_name'];
+	$iyear=$rowalma['year'];
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =3" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$ualma=$rowalma['ins_name'];
+	$uyear=$rowalma['year'];
+	echo $halma .' . '. $hyear;
+
+	$sqlinfo = "SELECT * FROM  `alma` WHERE  `uid` = '$uid' AND  `type` =4" ;					
+	$resultalma = mysqli_query($connection,$sqlinfo);
+	$rowalma = mysqli_fetch_array($resultalma, MYSQL_ASSOC);
+	$palma=$rowalma['ins_name'];
+	$pyear=$rowalma['year'];
+
+
+
+
+if(isset($_POST['submit']))
+{
 	echo "hello";
-	$uid = $_SESSION['username'];
-	$fname=$_POST['fname'];
-	$mname=$_POST['mname'];
-	
-	$lname=$_POST['lname'];
-	$desg=$_POST['desg'];
-	$other_email=$_POST['otheremail'];
-	$web_url=$_POST['weburl'];
-	$sex=$_POST['sex'];
-	$details=$_POST['details'];
-	$yoj=$_POST['yoj'];
-	$contact=$_POST['contact'];
+	if($_POST['fname']!=NULL)
+		$fname=$_POST['fname'];
+	if($_POST['mname']!=NULL)
+		$mname=$_POST['mname'];
+	if($_POST['lname']!=NULL)
+		$lname=$_POST['lname'];
+	if($_POST['desg']!=NULL)
+		$desg=$_POST['desg'];
+	if($_POST['otheremail']!=NULL)
+		$otheremail=$_POST['otheremail'];
+	if($_POST['weburl']!=NULL)
+		$web_url=$_POST['weburl'];
+	if($_POST['sex']!=NULL)
+		$sex=$_POST['sex'];
+	if($_POST['details']!=NULL)
+		$details=$_POST['details'];
+	if($_POST['yoj']!=NULL)
+		$yoj=$_POST['yoj'];
+	if($_POST['contact']!=NULL)
+		$contact=$_POST['contact'];
 	
 	if($sex=="M"|| $sex=="m")
 			$sex='1';
@@ -99,10 +161,25 @@ if(isset($_POST['submit'])){
 	//Sending form data to sql db.
 	//echo $uid . " " . $fname . " " . $mname . " " . $lname . $desg . $other_email . $web_url . $sex . $details ;
 	$sql = "INSERT INTO info (uid, f_name, m_name, l_name, dsg, other_email, web_url, sex, details, contact, yoj) 
-	VALUES ('$uid', '$fname', '$mname', '$lname', '$desg', '$other_email', '$web_url', '$sex', '$details', '$contact', '$yoj')";
+	VALUES ('$uid', '$fname', '$mname', '$lname', '$desg', '$otheremail', '$web_url', '$sex', '$details', '$contact', '$yoj')";
 	$query = mysql_query($sql);
 	if(!$query)
 	{
+		echo "Lets Update";
+	
+		$sql = "UPDATE  `sen`.`info` SET  `f_name` =  '$fname',`m_name` =  '$mname',
+		`l_name` =  '$lname',
+		`dsg` =  '$desg',
+		`other_email` =  '$otheremail',
+		`web_url` =  '$web_url',
+		`sex` =  '$sex',
+		`details` =  '$details',		
+		`contact` =  '$contact',
+		`yoj` =  '$yoj' 
+		WHERE  `info`.`uid` =$uid;";
+		$query = mysql_query($sql);
+		if($query)
+			echo "Updated Sucessfully";
 		echo "nonononononononooononono";
 	}
 	/*if(mysqli_query($connect, $sql)
@@ -112,15 +189,22 @@ if(isset($_POST['submit'])){
 	else{
 		echo "no";
 	}*/
-
-	$halma=$_POST['halma'];
-	$hyear=$_POST['hyear'];
-	$ialma=$_POST['ialma'];
-	$iyear=$_POST['iyear'];
-	$ualma=$_POST['ualma'];
-	$uyear=$_POST['uyear'];
-	$palma=$_POST['palma'];
-	$pyear=$_POST['pyear'];
+	if($_POST['halma']!=NULL)
+		$halma=$_POST['halma'];
+	if($_POST['hyear']!=NULL)
+		$hyear=$_POST['hyear'];
+	if($_POST['ialma']!=NULL)
+	$ialma=$_POST['ialma'];	
+	if($_POST['iyear']!=NULL)
+		$iyear=$_POST['iyear'];
+	if($_POST['ualma']!=NULL)
+		$ualma=$_POST['ualma'];
+	if($_POST['uyear']!=NULL)
+		$uyear=$_POST['uyear'];
+	if($_POST['palma']!=NULL)
+		$palma=$_POST['palma'];
+	if($_POST['pyear']!=NULL)
+		$pyear=$_POST['pyear'];
 	
 	if($halma)
 	{
@@ -211,11 +295,32 @@ if(isset($_POST['submit'])){
 		$sqlaoi="INSERT INTO `sen`.`rel_uid_aoi` (`uid`, `int`) VALUES ('$uid', '$aoiin[$index]');";
 		$query = mysql_query($sqlaoi);
    	}
-}
+
+	$skills = $_POST['skills'];
+	$skill = explode(",", $skills);
+	for ($index = 0; $index < count($skill); $index++)
+	{
+        
+   		echo $skill[$index].",", "\n";
+		$sqlskil="INSERT INTO `sen`.`skils` (`uid`, `skill`) VALUES ('$uid', '$skill[$index]');";
+		$query = mysql_query($sqlskil);
+
+   	}
+   	$positions=$_POST['positions'];
+
+   	$sqpos="INSERT INTO  `sen`.`positions` (`uid` ,`positions`)
+	VALUES ('$uid',  '$positions');";
+	$query = mysql_query($sqpos);
+	if(!$query)
+	{
+		$sqpos="UPDATE  `sen`.`positions` SET  `positions` =  '$positions' WHERE  `positions`.`uid` =$uid";
+		$query = mysql_query($sqpos);	
+	}
+	
+	}
 
 
 	?>
-	
 
 <body>
 	<div class="navbar navbar-inverse navbar-static-top" >
@@ -319,54 +424,54 @@ if(isset($_POST['submit'])){
       <h2>Personal info</h2>
 	  
         <div class="form-group" >
-          <label class="col-lg-3 control-label">Designation :</label>
+          <label class="col-lg-3 control-label">Designation :<!--<h6>Enter your Designation like Er. Dr. Prof.<h6>--></label>
           <div class="col-lg-7">
-				<input class="form-control" name="desg" placeholder="Dr/Prof/Er." type="text">
+				<input class="form-control"  name="desg"  type="text" placeholder= <?php echo $desg." "."Er./Dr/Prof."?> >
           </div>
         </div>
         <div class="form-group" >
-          <label class="col-lg-3 control-label">First name<sup>*</sup>:</label>
+          <label class="col-lg-3 control-label">First name<sup><font color = "red">*</font></sup>:</label>
           <div class="col-lg-7">
-				<input class="form-control" name="fname" placeholder="Anup" type="text">
+					<input class="form-control"  name="fname" placeholder= <?php echo $fname." "."Stephan."; ?> type="text">
           </div>
         </div>
 		<div class="form-group">
           <label class="col-lg-3 control-label">Middle name:</label>
           <div class="col-lg-7">
-				<input class="form-control" name="mname" placeholder="Kumar" type="text">
+				<input class="form-control"  name="mname" placeholder=<?php echo $mname." "."William"; ?> type="text">
           </div>
         </div>
 		
         <div class="form-group">
-          <label class="col-lg-3 control-label">Last name<sup>*</sup>:</label>
+          <label class="col-lg-3 control-label">Last name<sup><font color = "red">*</font></sup>:</label>
           <div class="col-lg-7">
-				<input class="form-control" name="lname" placeholder="Rai" type="text">
+				<input class="form-control" name="lname" placeholder=<?php echo $lname." "."Hawking"; ?> type="text">
           </div>
         </div>
 		
         <div class="form-group">
-          <label class="col-lg-3 control-label">Gender<sup>*</sup>:</label>
+          <label class="col-lg-3 control-label">Gender<sup><font color = "red">*</font></sup>:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="sex" placeholder="M/F" type="text">
           </div>
         </div>
 	
-		
+	<!--	
         <div class="form-group">
           <label class="col-lg-3 control-label">Webmail ID:</label>
           <div class="col-lg-7">
 				<input class="form-control" name="uid" placeholder="9 digits" type="text">
           </div>
-        </div>
+        </div>-->
 		<div class="form-group">
           <label class="col-lg-3 control-label">Web Url:</label>
           <div class="col-lg-7">
-				<input class="form-control" name="weburl" placeholder="Linkedin/Personal Home Page" type="text">
+				<input class="form-control" name="weburl" placeholder= <?php echo $web_url." "."Linkedin/Personal_Home_Page" ; ?> type="text">
           </div>
         </div>
         
 		 <div class="form-group">
-          <label class="col-lg-3 control-label">Stream:</label>
+          <label class="col-lg-3 control-label">Current Stream in DAIICT:</label>
           <div class="col-lg-6">
 				<div class="ui-select">
 					<select id="stream" class="form-control">
@@ -385,15 +490,16 @@ if(isset($_POST['submit'])){
 		 <div class="form-group">
           <label class="col-lg-3 control-label">Year of Joining:</label>
           <div class="col-lg-2">
-				<input class="form-control" name="yoj" placeholder="20xx" type="number">
+				<input class="form-control" name="yoj" placeholder= <?php echo $yoj." "."2001-2015" ; ?> type="number">
           </div>
         </div>
 		
 		
 		 <div class="form-group">
-          <label class="col-lg-3 control-label">Courses enrolled in:</label>
+          <label class="col-lg-3 control-label">Skills :</label>
           <div class="col-lg-7">
-				<input class="form-control" placeholder="Human Computer Interaction,Models of Computation" type="text">
+	<!--			<input class="form-control" placeholder="Human Computer Interaction,Models of Computation" type="text">-->	
+          <textarea class="form-control" placeholder="Add Your Skills" name = "skills" type="text" rows="5"></textarea>
           </div>
         </div>
 	
@@ -401,16 +507,25 @@ if(isset($_POST['submit'])){
 		<div class="form-group">
           <label class="col-lg-3 control-label">About Yourself:</label>
           <div class="col-lg-7">
-				<textarea class="form-control" name = "details" type="text" rows="5"></textarea>
+				<textarea class="form-control" name = "details" type="text" rows="5" placeholder= <?php echo $details." "."Tell_us_Something_About_Yourself"; ?> ></textarea>
+
           </div>
         </div>
 		
+		
+		<div class="form-group">
+          <label class="col-lg-3 control-label">Important Positions:</label>
+          <div class="col-lg-7">
+				<textarea class="form-control" name = "positions" type="text" rows="5" placeholder= <?php echo $positions." "."Tell_us_how_responsible_you_are_or_have_been"; ?> ></textarea>
+
+          </div>
+        </div>
 		 
 		
 		<div class="form-group">
           <label class="col-lg-3 control-label">Area of Interests:</label>
           <div class="col-lg-7">
-				<textarea class="form-control" name = "aoi" type="text" rows="5" placeholder="Neural_Networks,Victorian_Literature,Graph_Theory" ></textarea>
+				<textarea class="form-control" name = "aoi" type="text" rows="5" placeholder="Add area of interest for multiple interest seperate them using comma  ',' " ></textarea>
           </div>
         </div>
 		
@@ -424,7 +539,7 @@ if(isset($_POST['submit'])){
         <div class="form-group">
           <label class="col-lg-3 control-label">Alternate Email:</label>
           <div class="col-lg-7">
-            <input class="form-control" name="otheremail" placeholder="abc@abc.com" type="email">
+            <input class="form-control" name="otheremail" placeholder= <?php echo $otheremail; ?> type="email">
           </div>
         </div>
 		
@@ -432,7 +547,7 @@ if(isset($_POST['submit'])){
         <div class="form-group">
           <label class="col-lg-3 control-label">Contact Number:</label>
           <div class="col-lg-7">
-            <input class="form-control" name="contact" placeholder="10 digits" type="number">
+            <input class="form-control" name="contact" placeholder= <?php echo $contact; ?> type="number">
           </div>
         </div>
 
@@ -443,34 +558,34 @@ if(isset($_POST['submit'])){
 			<div class="form-group">
 				<label class="col-lg-3 control-label">High School</label>
 				<div class="col-lg-7">
-					<input class="form-control" name="halma" type="text">
+					<input class="form-control" placeholder = <?php echo $halma." "."Kendriya Vidyalaya"; ?> name="halma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name="hyear" placeholder="Year" type="number">
+					<input class="form-control" name="hyear" placeholder = <?php echo $hyear." "."2010"; ?> type="number">
 				</div>
 				
 				<label class="col-lg-3 control-label">Intermediate/+2</label>
 				<div class="col-lg-7">
-					<input class="form-control" name="ialma" type="text">
+					<input class="form-control" placeholder = <?php echo $ialma." "."Shri_Vividhlaxi_Vidyamandir"; ?> name="ialma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name="iyear" placeholder="Year" type="number">
+					<input class="form-control" name="iyear" placeholder = <?php echo $iyear; ?> type="number">
 				</div>
 				
 				<label class="col-lg-3 control-label">UG Institute</label>
 				<div class="col-lg-7">
-					<input class="form-control" name="ualma" type="text">
+					<input class="form-control" placeholder = <?php echo $ualma." "."Dhirubhai Ambani Institute Of Information and Communication Technology "; ?> name="ualma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name="uyear" placeholder="Year" type="number">
+					<input class="form-control" name="uyear" placeholder = <?php echo $uyear;?> type="number">
 				</div>
 				
 				<label class="col-lg-3 control-label">PG Institute</label>
 				<div class="col-lg-7">
-					<input class="form-control" name="palma" type="text">
+					<input class="form-control" placeholder = <?php echo $palma." "."Dhirubhai Ambani Institute Of Information and Communication Technology"; ?> name="palma" type="text">
 				</div>
 				<div class="col-lg-2">
-					<input class="form-control" name="pyear" placeholder="Year" type="number">
+					<input class="form-control" name="pyear" placeholder = <?php echo $pyear; ?> type="number">
 				</div>
 				
 			</div>
